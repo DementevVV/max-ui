@@ -1,27 +1,26 @@
-[![npm latest package](https://img.shields.io/npm/v/@maxhub/max-ui/latest.svg)](https://www.npmjs.com/package/@maxhub/max-ui)
-[![storybook](https://img.shields.io/badge/storybook-available-brightgreen)](https://max-messenger.github.io/max-ui)
+[![npm latest package](https://img.shields.io/npm/v/@dementevdev/max-ui/latest.svg)](https://www.npmjs.com/package/@dementevdev/max-ui)
 
 # MaxUI
 
 ## Установка
 
 ```sh
-npm install @maxhub/max-ui
+npm install @dementevdev/max-ui
 ```
 
 ```sh
-yarn add @maxhub/max-ui
+yarn add @dementevdev/max-ui
 ```
 
 ```sh
-pnpm add @maxhub/max-ui
+pnpm add @dementevdev/max-ui
 ```
 
 ## Быстрый старт
 
 ```typescript jsx
-import '@maxhub/max-ui/dist/styles.css';
-import { MaxUI, Panel, Button } from "@maxhub/max-ui";
+import '@dementevdev/max-ui/dist/styles.css';
+import { MaxUI, Panel, Button } from "@dementevdev/max-ui";
 
 const App = () => {
   return (
