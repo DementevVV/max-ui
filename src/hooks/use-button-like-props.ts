@@ -1,6 +1,8 @@
 import {
-  type ComponentProps, type ElementType,
+  type ComponentProps,
+  type ElementType,
   isValidElement,
+  type KeyboardEvent,
   type PropsWithChildren,
   type ReactNode
 } from 'react';
@@ -15,8 +17,20 @@ export interface ButtonLikeProps {
 
 // Хук useButtonLikeProps используется в полиморфных компонентах-кнопках (FatherComponent с asChild пропом): Button, Cell, CellAction, etc
 // Главная задача хука - собрать объект с валидными аттрибутами компонента, в зависимости от рутового элемента
-export const useButtonLikeProps = (props: ButtonLikeProps): ComponentProps<any> => {
+export const useButtonLikeProps = (
+  props: ButtonLikeProps
+): ComponentProps<any> => {
   const { asChild, children, rootElement, disabled, loading } = props;
+  const inactive = Boolean(disabled || loading);
+
+  const onDivKeyDown = (event: KeyboardEvent<HTMLDivElement>): void => {
+    if (inactive) return;
+
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      event.currentTarget.click();
+    }
+  };
 
   if (!asChild && rootElement === 'button') {
     const buttonProps: ComponentProps<'button'> = {
@@ -33,14 +47,15 @@ export const useButtonLikeProps = (props: ButtonLikeProps): ComponentProps<any> 
     // Если это ссылка (тег a), то нужно добавить aria-disabled, запревентить открытие ссылки и убрать фокус, если компонент disabled
     if (type === 'a') {
       const anchorProps: ComponentProps<'a'> = {
-        'aria-disabled': disabled ?? loading,
-        ...(disabled
+        'aria-disabled': inactive,
+        ...(inactive
           ? {
-            onClick: (e) => { e.preventDefault(); },
+            onClick: (e) => {
+              e.preventDefault();
+            },
             tabIndex: -1
           }
-          : {}
-        )
+          : {})
       };
 
       return anchorProps;
@@ -50,12 +65,10 @@ export const useButtonLikeProps = (props: ButtonLikeProps): ComponentProps<any> 
   // Если компонент не button и не a, то в качестве фоллбека используем пропы для div
   const divProps: ComponentProps<'div'> = {
     role: 'button',
-    tabIndex: disabled ? -1 : 0,
-    'aria-disabled': disabled ?? loading,
-    ...(disabled
-      ? { onClick: undefined }
-      : {}
-    )
+    tabIndex: inactive ? -1 : 0,
+    'aria-disabled': inactive,
+    onKeyDown: onDivKeyDown,
+    ...(inactive ? { onClick: undefined } : {})
   };
   return divProps;
 };

@@ -1,13 +1,21 @@
-import { type HTMLAttributeReferrerPolicy, useLayoutEffect, useState } from 'react';
+import { type HTMLAttributeReferrerPolicy, useEffect, useState } from 'react';
 
 export type ImageLoadingStatus = 'idle' | 'loading' | 'loaded' | 'error';
 
-export const useImageLoadingStatus = (src?: string, referrerPolicy?: HTMLAttributeReferrerPolicy): ImageLoadingStatus => {
-  const [loadingStatus, setLoadingStatus] = useState<ImageLoadingStatus>('idle');
+export const useImageLoadingStatus = (
+  src?: string,
+  referrerPolicy?: HTMLAttributeReferrerPolicy
+): ImageLoadingStatus => {
+  const [loadingStatus, setLoadingStatus] =
+    useState<ImageLoadingStatus>('idle');
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!src) {
       setLoadingStatus('error');
+      return;
+    }
+
+    if (typeof window?.Image === 'undefined') {
       return;
     }
 

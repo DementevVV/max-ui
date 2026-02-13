@@ -25,10 +25,13 @@ export const MaxUI = forwardRef<HTMLDivElement, MaxUIProps>((props, ref) => {
   });
   const colorScheme = colorSchemeProp ?? systemColorScheme;
 
-  const config = useMemo<MaxUIContextInterface>(() => ({
-    colorScheme,
-    platform
-  }), []);
+  const config = useMemo<MaxUIContextInterface>(
+    () => ({
+      colorScheme,
+      platform
+    }),
+    [colorScheme, platform]
+  );
 
   const rootClassName = clsx(
     styles.MaxUI,
