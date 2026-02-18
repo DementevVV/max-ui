@@ -8,6 +8,7 @@ export * from './CellSimple';
 export * from './Container';
 export * from './Counter';
 export * from './Dot';
+export * from './Dropdown';
 export * from './EllipsisText';
 export * from './Flex';
 export * from './Grid';

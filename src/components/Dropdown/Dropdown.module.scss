@@ -1,0 +1,86 @@
+@use '../../styles/builders/form-field-modes-builder';
+@use '../../styles/shared-mixins/reset-text-field';
+@use '../../styles/shared-mixins/typography';
+
+.Dropdown {
+  border-radius: var(--size-border-radius-semantic-border-radius-card);
+  color: var(--text-primary);
+}
+
+.Dropdown_disabled {
+  cursor: not-allowed;
+}
+
+.Dropdown_compact {
+  height: 40px;
+}
+.Dropdown:not(.Dropdown_compact) {
+  height: 52px;
+}
+
+.Dropdown_mode_primary {
+  @include form-field-modes-builder.buildFormFieldPrimaryMode('Dropdown');
+
+  .Dropdown__select {
+    background-color: var(--background-surface-card);
+
+    &:disabled {
+      background-color: var(--states-background-disabled-card);
+    }
+  }
+}
+.Dropdown_mode_secondary {
+  @include form-field-modes-builder.buildFormFieldSecondaryMode('Dropdown');
+
+  .Dropdown__select {
+    background-color: var(--background-accent-neutral-fade-secondary);
+
+    &:disabled {
+      background-color: var(--states-background-disabled-neutral-fade);
+    }
+  }
+}
+
+.Dropdown__body {
+  height: inherit;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.Dropdown__select {
+  @include reset-text-field.resetTextField;
+  @include typography.bodyLarge;
+
+  color: inherit;
+  border-radius: inherit;
+  width: 100%;
+  height: inherit;
+  cursor: pointer;
+  appearance: none;
+  padding: 0 calc(var(--spacing-size-xl) * 2 + 16px) 0 var(--spacing-size-xl);
+
+  .Dropdown_disabled & {
+    cursor: not-allowed;
+    color: var(--states-text-disabled-primary);
+  }
+}
+
+.Dropdown__icon {
+  width: 16px;
+  height: 16px;
+  color: var(--icon-secondary);
+  pointer-events: none;
+  position: absolute;
+  right: var(--spacing-size-xl);
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+
+  .Dropdown_disabled & {
+    color: var(--states-icon-disabled-primary);
+  }
+}

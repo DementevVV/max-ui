@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.15 — 2026-02-18
+
+### Added
+
+- Добавлен компонент `Dropdown` с поддержкой `mode` (`primary` / `secondary`), `compact`, `disabled`, `placeholder`, задания опций через проп `options` или дочерние `<option>`, а также `innerClassNames`.
+
+### Fixed
+
+- Исправлено визуальное отличие режимов `primary` и `secondary` у `Dropdown`: `background-color` теперь применяется непосредственно на нативный `<select>`, что корректно работает в браузерах.
+
 ## 0.1.14 — 2026-02-17
 
 ### Added
