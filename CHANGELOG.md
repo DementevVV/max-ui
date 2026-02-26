@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.1.16 — 2026-02-26
+
+### Added
+
+- **`Checkbox`** — новый компонент флажка с поддержкой `size` (`small` / `medium`), `appearance` (6 вариантов: `themed`, `neutral`, `contrast-pinned`, `neutral-fade`, `accent-red`, `inherit`), `indeterminate`, платформенных стилей iOS/Android и `innerClassNames`.
+- **`Tabs` / `TabsItem`** — новый компонент навигационных вкладок. `Tabs` поддерживает `direction` (`horizontal` / `vertical`), `size` (`small` / `medium` / `large`), `mode` (`default` / `segmented`), `align` (`start` / `center` / `end` / `stretch`), `appearance`. `TabsItem` поддерживает `justify` (`start` / `center` / `end`), `icon`, `label`, `badge`, `selected`, `disabled`.
+- **`RadioGroup` / `RadioButton`** — новый компонент группы переключателей. `RadioGroup` управляет состоянием через `value` / `onValueChange`, поддерживает `direction` (`horizontal` / `vertical`), `horizontalOverflow` (`wrap` / `scroll`), `compact`, `appearance`, `size`. `RadioButton` наследует настройки группы через context, поддерживает standalone-использование.
+- **`Separator`** — новый компонент разделителя. Поддерживает `orientation` (`horizontal` / `vertical`), `spacing` (`none` / `small` / `medium` / `large`) и `padStart` для отступа начала линии (iOS-паттерн в списках).
+
+### Changed
+
+- **`CellSimple`** — высота (`height_compact` / `height_normal`) теперь задаётся через CSS custom properties с fallback (`--MaxUi-CellSimple_paddingY`, `--MaxUi-CellSimple_minHeight`). Это позволяет контейнерам-родителям (например `RadioGroup compact`) переопределять размеры ячеек через CSS cascade без передачи пропа `height` на каждый элемент вручную. Визуальных изменений нет.
+
+### Fixed
+
+- Исправлена циклическая зависимость `components/index.ts → Avatar → hooks/use-color-scheme.ts → components/index.ts`: хуки `use-color-scheme` и `use-platform` теперь импортируют `useAppearance` напрямую из `components/MaxUI/MaxUIContext`, а не из barrel-файла `components/index.ts`.
+- **`TabsItem`**: `justify-content` внутри элемента вкладки не работал при `align="stretch"` — `EllipsisText` (label) имел `flex: 1 1 auto` и занимал всё доступное пространство. Исправлено: при наличии класса `TabsItem_justify_*` label получает `flex: 0 1 auto` (не растёт, но может сжиматься для truncation).
+- **`RadioGroup` horizontal**: элементы отображались вертикально из-за `width: 100%` у `CellSimple`. Исправлено через `width: auto !important` на прямых детях горизонтальной группы.
+
 ## 0.1.15 — 2026-02-18
 
 ### Added

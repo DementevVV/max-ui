@@ -1,0 +1,155 @@
+.Checkbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+// [Parts]
+.Checkbox__box {
+  width: var(--MaxUi-Checkbox__box_size);
+  height: var(--MaxUi-Checkbox__box_size);
+  background-color: var(--MaxUi-Checkbox__box_background);
+  border: var(--MaxUi-Checkbox__box_borderWidth) solid
+    var(--MaxUi-Checkbox__box_borderColor);
+  border-radius: var(--MaxUi-Checkbox__box_borderRadius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s;
+  flex-shrink: 0;
+}
+
+.Checkbox__icon {
+  width: 16px;
+  height: 16px;
+  color: var(--MaxUi-Checkbox__icon_color);
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    opacity 0.1s,
+    transform 0.1s;
+  display: block;
+}
+
+.Checkbox__input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+.Checkbox__input:disabled {
+  cursor: not-allowed;
+}
+
+// [State] Checked / Indeterminate — icon visible
+.Checkbox:has(.Checkbox__input:checked) .Checkbox__icon,
+.Checkbox_indeterminate .Checkbox__icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+// [State] Disabled
+.Checkbox_disabled .Checkbox__box {
+  opacity: 0.4;
+}
+.Checkbox_disabled .Checkbox__input {
+  cursor: not-allowed;
+}
+
+// [Properties] Sizes
+.Checkbox_size_small {
+  --MaxUi-Checkbox__box_size: 20px;
+  --MaxUi-Checkbox__box_borderWidth: 1.5px;
+  --MaxUi-Checkbox__box_borderRadius: 5px;
+}
+
+.Checkbox_size_medium {
+  --MaxUi-Checkbox__box_size: 24px;
+  --MaxUi-Checkbox__box_borderWidth: 1.5px;
+  --MaxUi-Checkbox__box_borderRadius: 6px;
+}
+
+// [Properties] Appearances — задают --MaxUi-Checkbox__accent, который используется платформой
+.Checkbox_appearance_themed {
+  --MaxUi-Checkbox__accent: var(--background-accent-themed);
+  --MaxUi-Checkbox__accent-disabled: var(--states-background-disabled-themed);
+}
+
+.Checkbox_appearance_neutral {
+  --MaxUi-Checkbox__accent: var(--background-accent-neutral);
+  --MaxUi-Checkbox__accent-disabled: var(--states-background-disabled-neutral);
+}
+
+.Checkbox_appearance_contrast-pinned {
+  --MaxUi-Checkbox__accent: var(--background-accent-contrast-static);
+  --MaxUi-Checkbox__accent-disabled: var(
+    --states-background-disabled-contrast-static
+  );
+}
+
+.Checkbox_appearance_neutral-fade {
+  --MaxUi-Checkbox__accent: var(--background-accent-neutral-fade);
+  --MaxUi-Checkbox__accent-disabled: var(
+    --states-background-disabled-neutral-fade
+  );
+}
+
+.Checkbox_appearance_accent-red {
+  --MaxUi-Checkbox__accent: var(--background-accent-negative);
+  --MaxUi-Checkbox__accent-disabled: var(--states-background-disabled-negative);
+}
+
+.Checkbox_appearance_inherit {
+  --MaxUi-Checkbox__accent: var(
+    --MaxUi-external_background,
+    var(--background-accent-themed)
+  );
+  --MaxUi-Checkbox__accent-disabled: var(--states-background-disabled-themed);
+}
+
+// [Properties] Platform – iOS
+.Checkbox_platform_ios {
+  --MaxUi-Checkbox__icon_color: var(--icon-contrast-static);
+  --MaxUi-Checkbox__box_background: var(--background-surface-primary);
+  --MaxUi-Checkbox__box_borderColor: var(--stroke-separator-primary);
+}
+
+.Checkbox_platform_ios:has(.Checkbox__input:checked),
+.Checkbox_platform_ios.Checkbox_indeterminate {
+  --MaxUi-Checkbox__box_background: var(--MaxUi-Checkbox__accent);
+  --MaxUi-Checkbox__box_borderColor: var(--MaxUi-Checkbox__accent);
+}
+
+.Checkbox_platform_ios:has(.Checkbox__input:disabled:checked),
+.Checkbox_platform_ios.Checkbox_indeterminate:has(.Checkbox__input:disabled) {
+  --MaxUi-Checkbox__box_background: var(--MaxUi-Checkbox__accent-disabled);
+  --MaxUi-Checkbox__box_borderColor: transparent;
+}
+
+// [Properties] Platform – Android
+.Checkbox_platform_android {
+  --MaxUi-Checkbox__icon_color: var(--icon-contrast-static);
+  --MaxUi-Checkbox__box_background: transparent;
+  --MaxUi-Checkbox__box_borderColor: var(--stroke-separator-primary);
+}
+
+.Checkbox_platform_android:has(.Checkbox__input:checked),
+.Checkbox_platform_android.Checkbox_indeterminate {
+  --MaxUi-Checkbox__box_background: var(--MaxUi-Checkbox__accent);
+  --MaxUi-Checkbox__box_borderColor: var(--MaxUi-Checkbox__accent);
+}
+
+.Checkbox_platform_android:has(.Checkbox__input:disabled:checked),
+.Checkbox_platform_android.Checkbox_indeterminate:has(
+    .Checkbox__input:disabled
+  ) {
+  --MaxUi-Checkbox__box_background: var(--MaxUi-Checkbox__accent-disabled);
+  --MaxUi-Checkbox__box_borderColor: transparent;
+}

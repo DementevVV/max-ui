@@ -11,19 +11,25 @@
 .CellSimple_disabled {
   color: var(--states-text-disabled-primary);
 
-  .CellSimple__subtitle, .CellSimple__overline {
+  .CellSimple__subtitle,
+  .CellSimple__overline {
     color: var(--states-text-disabled-primary);
   }
 }
 
 // [Properties] Heights
+// Используют CSS custom properties с fallback, чтобы родители (например
+// RadioGroup_compact) могли переопределить размеры через cascade.
 .CellSimple_height_compact {
-  padding: var(--spacing-size-xs) var(--spacing-size-xl);
-  min-height: 48px;
+  padding: var(--MaxUi-CellSimple_paddingY, var(--spacing-size-xs))
+    var(--spacing-size-xl);
+  min-height: var(--MaxUi-CellSimple_minHeight, 48px);
 }
+
 .CellSimple_height_normal {
-  padding: var(--spacing-size-m) var(--spacing-size-xl);
-  min-height: 56px;
+  padding: var(--MaxUi-CellSimple_paddingY, var(--spacing-size-m))
+    var(--spacing-size-xl);
+  min-height: var(--MaxUi-CellSimple_minHeight, 56px);
 }
 
 // [Parts] Before
@@ -48,7 +54,7 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  min-width: 0
+  min-width: 0;
 }
 
 // [Parts] Title

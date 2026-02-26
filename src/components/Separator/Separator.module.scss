@@ -1,0 +1,62 @@
+// ─── Separator ────────────────────────────────────────────────────────────────
+
+.Separator {
+  border: none;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+  background-color: var(--stroke-separator-primary);
+}
+
+// ─── Orientation ─────────────────────────────────────────────────────────────
+
+.Separator_orientation_horizontal {
+  display: block;
+  width: 100%;
+  height: 1px;
+}
+
+.Separator_orientation_vertical {
+  display: inline-block;
+  width: 1px;
+  height: 100%;
+  align-self: stretch;
+}
+
+// ─── Spacing — внешние отступы вокруг разделителя ────────────────────────────
+
+.Separator_orientation_horizontal.Separator_spacing_small {
+  margin-top: var(--spacing-size-xs, 8px);
+  margin-bottom: var(--spacing-size-xs, 8px);
+}
+
+.Separator_orientation_horizontal.Separator_spacing_medium {
+  margin-top: var(--spacing-size-m, 16px);
+  margin-bottom: var(--spacing-size-m, 16px);
+}
+
+.Separator_orientation_horizontal.Separator_spacing_large {
+  margin-top: var(--spacing-size-xl, 24px);
+  margin-bottom: var(--spacing-size-xl, 24px);
+}
+
+.Separator_orientation_vertical.Separator_spacing_small {
+  margin-left: var(--spacing-size-xs, 8px);
+  margin-right: var(--spacing-size-xs, 8px);
+}
+
+.Separator_orientation_vertical.Separator_spacing_medium {
+  margin-left: var(--spacing-size-m, 16px);
+  margin-right: var(--spacing-size-m, 16px);
+}
+
+.Separator_orientation_vertical.Separator_spacing_large {
+  margin-left: var(--spacing-size-xl, 24px);
+  margin-right: var(--spacing-size-xl, 24px);
+}
+
+// ─── padStart — стандартный отступ слева как в списках ────────────────────────
+
+.Separator_orientation_horizontal.Separator_padStart {
+  margin-left: var(--MaxUi-Separator_padStart, var(--spacing-size-xl, 24px));
+}

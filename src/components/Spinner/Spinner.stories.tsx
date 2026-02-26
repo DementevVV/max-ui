@@ -18,7 +18,13 @@ const meta = {
       return (
         <OverlayContainer
           style={{ width: 375 }}
-          appearance={['contrast', 'contrast-static'].includes(context?.args.appearance ?? 'primary') || colorScheme === 'dark' ? 'dark' : 'light'}
+          appearance={
+            ['contrast', 'contrast-static'].includes(
+              (context?.args.appearance ?? 'primary') as string
+            ) || colorScheme === 'dark'
+              ? 'dark'
+              : 'light'
+          }
         >
           <Story />
         </OverlayContainer>
@@ -32,8 +38,6 @@ type Story = StoryObj<SpinnerProps>;
 
 export const Playground: Story = {
   render: ({ ...args }) => {
-    return (
-      <Spinner {...args} />
-    );
+    return <Spinner {...args} />;
   }
 };

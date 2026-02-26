@@ -1,0 +1,270 @@
+// ─── Tabs container ──────────────────────────────────────────────────────────
+
+.Tabs {
+  display: flex;
+  box-sizing: border-box;
+
+  // Скрываем нативный скроллбар, оставляем скролл
+  overflow: auto;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+// [Property] Direction
+.Tabs_direction_horizontal {
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.Tabs_direction_vertical {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+// [Property] Mode – default (underline indicator)
+.Tabs_mode_default {
+  border-bottom: var(--MaxUi-Tabs__indicator_height, 1px) solid
+    var(--stroke-separator-primary);
+
+  &.Tabs_direction_vertical {
+    border-bottom: none;
+    border-right: var(--MaxUi-Tabs__indicator_height, 1px) solid
+      var(--stroke-separator-primary);
+  }
+}
+
+// [Property] Mode – segmented (pill/chip style)
+.Tabs_mode_segmented {
+  gap: var(--MaxUi-Tabs__segmented_gap, 0px);
+  background-color: var(--background-accent-neutral-fade);
+  border-radius: var(--MaxUi-Tabs__segmented_borderRadius, 10px);
+  padding: var(--MaxUi-Tabs__segmented_padding, 2px);
+}
+
+// [Property] Align
+.Tabs_align_start {
+  justify-content: flex-start;
+}
+
+.Tabs_align_center {
+  justify-content: center;
+}
+
+.Tabs_align_end {
+  justify-content: flex-end;
+}
+
+.Tabs_align_stretch {
+  justify-content: stretch;
+
+  .TabsItem {
+    flex: 1 1 0%;
+    min-width: 0;
+  }
+}
+
+// [Property] Sizes (applied to the container to propagate to items via --vars)
+.Tabs_size_small {
+  --MaxUi-TabsItem_height: 32px;
+  --MaxUi-TabsItem_paddingX: 12px;
+  --MaxUi-TabsItem_gap: 4px;
+  --MaxUi-TabsItem_fontSize: 13px;
+  --MaxUi-TabsItem_fontWeight: 500;
+  --MaxUi-TabsItem_iconSize: 16px;
+}
+
+.Tabs_size_medium {
+  --MaxUi-TabsItem_height: 40px;
+  --MaxUi-TabsItem_paddingX: 16px;
+  --MaxUi-TabsItem_gap: 6px;
+  --MaxUi-TabsItem_fontSize: 15px;
+  --MaxUi-TabsItem_fontWeight: 500;
+  --MaxUi-TabsItem_iconSize: 20px;
+}
+
+.Tabs_size_large {
+  --MaxUi-TabsItem_height: 48px;
+  --MaxUi-TabsItem_paddingX: 20px;
+  --MaxUi-TabsItem_gap: 8px;
+  --MaxUi-TabsItem_fontSize: 17px;
+  --MaxUi-TabsItem_fontWeight: 600;
+  --MaxUi-TabsItem_iconSize: 24px;
+}
+
+// ─── TabsItem ────────────────────────────────────────────────────────────────
+
+.TabsItem {
+  font-family: var(--family-base);
+  font-size: var(--MaxUi-TabsItem_fontSize, 15px);
+  font-weight: var(--MaxUi-TabsItem_fontWeight, 500);
+  line-height: 1.2;
+  color: var(--MaxUi-TabsItem_foreground, var(--text-secondary));
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  padding: 0 var(--MaxUi-TabsItem_paddingX, 16px);
+  height: var(--MaxUi-TabsItem_height, 40px);
+  min-height: var(--MaxUi-TabsItem_height, 40px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--MaxUi-TabsItem_gap, 6px);
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  box-sizing: border-box;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  white-space: nowrap;
+  transition: color 0.15s;
+  border-radius: 0;
+}
+
+// [Part] Icon
+.TabsItem__icon {
+  width: var(--MaxUi-TabsItem_iconSize, 20px);
+  height: var(--MaxUi-TabsItem_iconSize, 20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: inherit;
+
+  > svg,
+  > img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// [Part] Label
+.TabsItem__label {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+// [Part] Badge
+.TabsItem__badge {
+  flex-shrink: 0;
+}
+
+// [Property] Justify - выравнивание контента внутри вкладки
+// Для работы justify нужно убрать grow у label, иначе он занимает всё
+// пространство и justify-content на кнопке не имеет эффекта.
+// flex: 0 1 auto — не растёт, но может сжиматься (truncation работает).
+.TabsItem_justify_start,
+.TabsItem_justify_center,
+.TabsItem_justify_end {
+  .TabsItem__label {
+    flex: 0 1 auto;
+  }
+}
+
+.TabsItem_justify_start {
+  justify-content: flex-start;
+}
+
+.TabsItem_justify_center {
+  justify-content: center;
+}
+
+.TabsItem_justify_end {
+  justify-content: flex-end;
+}
+
+// [Modifier] Vertical layout (icon stacked above label)
+.Tabs_direction_vertical .TabsItem {
+  justify-content: flex-start;
+  padding-left: var(--MaxUi-TabsItem_paddingX, 16px);
+  padding-right: var(--MaxUi-TabsItem_paddingX, 16px);
+  min-width: 0;
+  width: 100%;
+  height: var(--MaxUi-TabsItem_height, 40px);
+
+  .TabsItem__label {
+    flex: 0 0 auto;
+  }
+}
+
+// [Properties] Appearances — цвет индикатора активной вкладки
+.Tabs_appearance_themed {
+  --MaxUi-TabsItem_indicator_color: var(--background-accent-themed);
+}
+
+.Tabs_appearance_contrast-pinned {
+  --MaxUi-TabsItem_indicator_color: var(--background-accent-contrast-static);
+}
+
+.Tabs_appearance_neutral-fade {
+  --MaxUi-TabsItem_indicator_color: var(--background-accent-neutral-fade);
+}
+
+.Tabs_appearance_accent-red {
+  --MaxUi-TabsItem_indicator_color: var(--background-accent-negative);
+}
+
+.Tabs_appearance_inherit {
+  --MaxUi-TabsItem_indicator_color: var(
+    --MaxUi-external_background,
+    var(--background-accent-themed)
+  );
+}
+
+// [State] Selected — default mode
+.Tabs_mode_default .TabsItem_selected {
+  color: var(--MaxUi-TabsItem_foreground-selected, var(--text-primary));
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: calc(-1 * var(--MaxUi-Tabs__indicator_height, 1px));
+    left: 0;
+    right: 0;
+    height: var(--MaxUi-Tabs__indicator_height, 2px);
+    background-color: var(
+      --MaxUi-TabsItem_indicator_color,
+      var(--background-accent-themed)
+    );
+    border-radius: 2px 2px 0 0;
+  }
+}
+
+// Vertical selected indicator on the right side
+.Tabs_mode_default.Tabs_direction_vertical .TabsItem_selected {
+  &::after {
+    bottom: 0;
+    top: 0;
+    left: auto;
+    right: calc(-1 * var(--MaxUi-Tabs__indicator_height, 1px));
+    width: var(--MaxUi-Tabs__indicator_height, 2px);
+    height: auto;
+    border-radius: 2px 0 0 2px;
+  }
+}
+
+// [State] Selected — segmented mode
+.Tabs_mode_segmented .TabsItem_selected {
+  background-color: var(--background-surface-primary);
+  border-radius: calc(var(--MaxUi-Tabs__segmented_borderRadius, 10px) - 2px);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+  color: var(--MaxUi-TabsItem_foreground-selected, var(--text-primary));
+}
+
+.Tabs_mode_segmented .TabsItem {
+  flex: 1 1 0%;
+}
+
+// [State] Disabled
+.TabsItem_disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+// [State] Hover / Focus visible
+.TabsItem:not(.TabsItem_disabled):not(.TabsItem_selected):hover {
+  color: var(--MaxUi-TabsItem_foreground-hover, var(--text-primary));
+}

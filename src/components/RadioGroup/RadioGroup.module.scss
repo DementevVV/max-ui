@@ -1,0 +1,54 @@
+// ─── RadioGroup container ─────────────────────────────────────────────────────
+
+.RadioGroup {
+  display: flex;
+}
+
+.RadioGroup_direction_horizontal {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--MaxUi-RadioGroup__gap, 8px);
+
+  // CellSimple и любые другие дети имеют width: 100% по умолчанию —
+  // сбрасываем через !important, т.к. специфичность одинакова и порядок
+  // загрузки CSS-модулей недетерминирован.
+  > * {
+    width: auto !important;
+    flex-shrink: 0;
+  }
+}
+
+// [Property] horizontalOverflow — только для direction=horizontal
+
+.RadioGroup_horizontal_wrap {
+  flex-wrap: wrap;
+}
+
+.RadioGroup_horizontal_scroll {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.RadioGroup_direction_vertical {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--MaxUi-RadioGroup__gap, 0px);
+}
+
+// [Property] Compact
+
+.RadioGroup_compact {
+  // Меньший отступ между элементами
+  --MaxUi-RadioGroup__gap: 4px;
+
+  // Форсируем compact-высоту у вложенных CellSimple — переопределяем fallback-vars,
+  // которые CellSimple читает через var(--MaxUi-CellSimple_paddingY, ...).
+  // Работает потому что vars устанавливаются на предке, не на самом элементе.
+  --MaxUi-CellSimple_paddingY: var(--spacing-size-xs, 8px);
+  --MaxUi-CellSimple_minHeight: 48px;
+}

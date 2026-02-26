@@ -1,0 +1,167 @@
+// ─── RadioButton ─────────────────────────────────────────────────────────────
+
+.RadioButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+// [Parts]
+
+.RadioButton__ring {
+  width: var(--MaxUi-RadioButton__size);
+  height: var(--MaxUi-RadioButton__size);
+  border-radius: 50%;
+  border: var(--MaxUi-RadioButton__borderWidth) solid
+    var(--MaxUi-RadioButton__ring_borderColor);
+  background-color: var(--MaxUi-RadioButton__ring_background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  transition:
+    border-color 0.15s,
+    background-color 0.15s;
+  flex-shrink: 0;
+}
+
+.RadioButton__dot {
+  width: var(--MaxUi-RadioButton__dot_size);
+  height: var(--MaxUi-RadioButton__dot_size);
+  border-radius: 50%;
+  background-color: var(--MaxUi-RadioButton__dot_color);
+  opacity: 0;
+  transform: scale(0.3);
+  transition:
+    opacity 0.1s,
+    transform 0.15s;
+}
+
+.RadioButton__input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.RadioButton__input:disabled {
+  cursor: not-allowed;
+}
+
+// [State] Checked — dot visible
+.RadioButton:has(.RadioButton__input:checked) .RadioButton__dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+// [State] Disabled
+.RadioButton_disabled .RadioButton__ring {
+  opacity: 0.4;
+}
+
+.RadioButton_disabled .RadioButton__input {
+  cursor: not-allowed;
+}
+
+// ─── Sizes ────────────────────────────────────────────────────────────────────
+
+.RadioButton_size_small {
+  --MaxUi-RadioButton__size: 20px;
+  --MaxUi-RadioButton__borderWidth: 1.5px;
+  --MaxUi-RadioButton__dot_size: 8px;
+}
+
+.RadioButton_size_medium {
+  --MaxUi-RadioButton__size: 24px;
+  --MaxUi-RadioButton__borderWidth: 1.5px;
+  --MaxUi-RadioButton__dot_size: 10px;
+}
+
+// ─── Appearances — задают --MaxUi-RadioButton__accent ────────────────────────
+
+.RadioButton_appearance_themed {
+  --MaxUi-RadioButton__accent: var(--background-accent-themed);
+  --MaxUi-RadioButton__accent-disabled: var(
+    --states-background-disabled-themed
+  );
+}
+
+.RadioButton_appearance_neutral {
+  --MaxUi-RadioButton__accent: var(--background-accent-neutral);
+  --MaxUi-RadioButton__accent-disabled: var(
+    --states-background-disabled-neutral
+  );
+}
+
+.RadioButton_appearance_contrast-pinned {
+  --MaxUi-RadioButton__accent: var(--background-accent-contrast-static);
+  --MaxUi-RadioButton__accent-disabled: var(
+    --states-background-disabled-contrast-static
+  );
+}
+
+.RadioButton_appearance_neutral-fade {
+  --MaxUi-RadioButton__accent: var(--background-accent-neutral-fade);
+  --MaxUi-RadioButton__accent-disabled: var(
+    --states-background-disabled-neutral-fade
+  );
+}
+
+.RadioButton_appearance_accent-red {
+  --MaxUi-RadioButton__accent: var(--background-accent-negative);
+  --MaxUi-RadioButton__accent-disabled: var(
+    --states-background-disabled-negative
+  );
+}
+
+.RadioButton_appearance_inherit {
+  --MaxUi-RadioButton__accent: var(
+    --MaxUi-external_background,
+    var(--background-accent-themed)
+  );
+  --MaxUi-RadioButton__accent-disabled: var(
+    --states-background-disabled-themed
+  );
+}
+
+// ─── Platform – iOS ───────────────────────────────────────────────────────────
+
+.RadioButton_platform_ios {
+  --MaxUi-RadioButton__ring_background: var(--background-surface-primary);
+  --MaxUi-RadioButton__ring_borderColor: var(--stroke-separator-primary);
+  --MaxUi-RadioButton__dot_color: var(--MaxUi-RadioButton__accent);
+}
+
+.RadioButton_platform_ios:has(.RadioButton__input:checked) {
+  --MaxUi-RadioButton__ring_borderColor: var(--MaxUi-RadioButton__accent);
+}
+
+.RadioButton_platform_ios:has(.RadioButton__input:disabled:checked) {
+  --MaxUi-RadioButton__ring_borderColor: var(
+    --MaxUi-RadioButton__accent-disabled
+  );
+  --MaxUi-RadioButton__dot_color: var(--MaxUi-RadioButton__accent-disabled);
+}
+
+// ─── Platform – Android ───────────────────────────────────────────────────────
+
+.RadioButton_platform_android {
+  --MaxUi-RadioButton__ring_background: transparent;
+  --MaxUi-RadioButton__ring_borderColor: var(--stroke-separator-primary);
+  --MaxUi-RadioButton__dot_color: var(--MaxUi-RadioButton__accent);
+}
+
+.RadioButton_platform_android:has(.RadioButton__input:checked) {
+  --MaxUi-RadioButton__ring_borderColor: var(--MaxUi-RadioButton__accent);
+}
+
+.RadioButton_platform_android:has(.RadioButton__input:disabled:checked) {
+  --MaxUi-RadioButton__ring_borderColor: var(
+    --MaxUi-RadioButton__accent-disabled
+  );
+  --MaxUi-RadioButton__dot_color: var(--MaxUi-RadioButton__accent-disabled);
+}
