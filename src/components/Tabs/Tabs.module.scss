@@ -3,6 +3,8 @@
 .Tabs {
   display: flex;
   box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
 
   // Скрываем нативный скроллбар, оставляем скролл
   overflow: auto;
@@ -121,6 +123,7 @@
   white-space: nowrap;
   transition: color 0.15s;
   border-radius: 0;
+  max-width: 100%;
 }
 
 // [Part] Icon
@@ -149,10 +152,14 @@
 // [Part] Badge
 .TabsItem__badge {
   flex-shrink: 0;
-  // Переопределяем токен шрифта, который Counter наследует через CSS cascade.
-  // Без этого двух-/трёхзначные числа вызывают overflow и горизонтальный скролл.
-  --size-title-small: 11px;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
   --height-title-small: 1;
+}
+
+.TabsItem__badge > * {
+  max-width: 100%;
 }
 
 // [Property] Justify - выравнивание контента внутри вкладки
@@ -181,7 +188,12 @@
 
 // [Modifier] Vertical layout (icon stacked above label)
 .Tabs_direction_vertical .TabsItem {
-  justify-content: flex-start;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
   padding-left: var(--MaxUi-TabsItem_paddingX, 16px);
   padding-right: var(--MaxUi-TabsItem_paddingX, 16px);
   min-width: 0;
@@ -258,8 +270,14 @@
   color: var(--MaxUi-TabsItem_foreground-selected, var(--text-primary));
 }
 
-.Tabs_mode_segmented .TabsItem {
+.Tabs_mode_segmented.Tabs_align_stretch .TabsItem {
   flex: 1 1 0%;
+}
+
+.Tabs_mode_segmented.Tabs_align_start .TabsItem,
+.Tabs_mode_segmented.Tabs_align_center .TabsItem,
+.Tabs_mode_segmented.Tabs_align_end .TabsItem {
+  flex: 0 0 auto;
 }
 
 // [State] Disabled
@@ -271,4 +289,10 @@
 // [State] Hover / Focus visible
 .TabsItem:not(.TabsItem_disabled):not(.TabsItem_selected):hover {
   color: var(--MaxUi-TabsItem_foreground-hover, var(--text-primary));
+}
+
+.TabsItem:not(.TabsItem_disabled):focus-visible {
+  color: var(--MaxUi-TabsItem_foreground-hover, var(--text-primary));
+  box-shadow: inset 0 0 0 2px
+    var(--MaxUi-TabsItem_indicator_color, var(--background-accent-themed));
 }

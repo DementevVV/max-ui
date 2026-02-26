@@ -52,6 +52,11 @@
   cursor: not-allowed;
 }
 
+.RadioButton__input:focus-visible + .RadioButton__ring {
+  box-shadow: 0 0 0 2px
+    var(--MaxUi-RadioButton__accent, var(--background-accent-themed));
+}
+
 // [State] Checked — dot visible
 .RadioButton:has(.RadioButton__input:checked) .RadioButton__dot {
   opacity: 1;

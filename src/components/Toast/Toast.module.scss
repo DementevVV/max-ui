@@ -1,0 +1,98 @@
+@use '../../styles/shared-mixins/typography';
+@use '../../styles/shared-mixins/reset-clickable';
+
+.ToastViewport {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-size-s);
+  pointer-events: none;
+  padding: var(--spacing-size-m) var(--spacing-size-m)
+    calc(env(safe-area-inset-bottom, 0px) + var(--spacing-size-m));
+  box-sizing: border-box;
+}
+
+.Toast {
+  --MaxUi-Toast_background: var(--background-accent-neutral-fade);
+  --MaxUi-Toast_foreground: var(--text-primary);
+
+  @include typography.bodySmall;
+
+  width: min(100%, 420px);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-size-s);
+  border-radius: var(--size-border-radius-semantic-border-radius-card);
+  background-color: var(--MaxUi-Toast_background);
+  color: var(--MaxUi-Toast_foreground);
+  padding: var(--spacing-size-m);
+  box-sizing: border-box;
+  pointer-events: auto;
+}
+
+.Toast_appearance_themed {
+  --MaxUi-Toast_background: var(--background-accent-themed);
+  --MaxUi-Toast_foreground: var(--text-contrast-static);
+}
+
+.Toast_appearance_neutral {
+  --MaxUi-Toast_background: var(--background-accent-neutral-fade);
+  --MaxUi-Toast_foreground: var(--text-primary);
+}
+
+.Toast_appearance_positive {
+  --MaxUi-Toast_background: var(--background-accent-positive);
+  --MaxUi-Toast_foreground: var(--text-contrast-static);
+}
+
+.Toast_appearance_negative {
+  --MaxUi-Toast_background: var(--background-accent-negative);
+  --MaxUi-Toast_foreground: var(--text-contrast-static);
+}
+
+.Toast_appearance_contrast-static {
+  --MaxUi-Toast_background: var(--background-accent-contrast-static);
+  --MaxUi-Toast_foreground: var(--text-primary-static);
+}
+
+.Toast__content {
+  min-width: 0;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-2xs);
+}
+
+.Toast__message {
+  @include typography.labelLargeStrong;
+}
+
+.Toast__description {
+  @include typography.bodySmall;
+}
+
+.Toast__action {
+  @include reset-clickable.resetClickable;
+  @include typography.actionSmall;
+
+  align-self: flex-start;
+  color: inherit;
+  text-decoration: underline;
+  flex-shrink: 0;
+}
+
+.Toast__close {
+  @include reset-clickable.resetClickable;
+
+  color: inherit;
+  opacity: 0.75;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

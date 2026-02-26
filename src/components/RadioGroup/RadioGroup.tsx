@@ -109,6 +109,8 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
         <div
           ref={forwardedRef}
           role="radiogroup"
+          aria-orientation={direction}
+          aria-disabled={disabled}
           className={rootClassName}
           {...rest}
         >
@@ -157,7 +159,7 @@ export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
       onChange?.(e);
-      if (groupControlled && value !== undefined) {
+      if (e.currentTarget.checked && value !== undefined) {
         ctx?.onValueChange?.(String(value));
       }
     };

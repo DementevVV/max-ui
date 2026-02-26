@@ -5,7 +5,13 @@ import Icon20Placeholder from '../../../.storybook/assets/icons/icon-20-placehol
 import Icon24Placeholder from '../../../.storybook/assets/icons/icon-24-placeholder.svg';
 import { Counter } from '../Counter';
 import { Dot } from '../Dot';
-import { Tabs, TabsItem, type TabsItemJustify, type TabsProps } from './Tabs';
+import {
+  Tabs,
+  TabsContent,
+  TabsItem,
+  type TabsItemJustify,
+  type TabsProps
+} from './Tabs';
 
 type TabsStoryProps = TabsProps & {
   /** Выравнивание контента (иконка + текст + бейдж) внутри каждой вкладки */
@@ -663,6 +669,157 @@ export const Justify: Story = {
             />
           ))}
         </Tabs>
+      </>
+    );
+  }
+};
+
+// ─── Overflow / Large Counter ────────────────────────────────────────────────
+
+export const OverflowWithLargeCounter: Story = {
+  name: 'Overflow / Large Counter',
+  decorators: [
+    (Story) => (
+      <div style={{ width: 320 }}>
+        <Story />
+      </div>
+    )
+  ],
+  render: () => {
+    const [active, setActive] = useState(0);
+
+    return (
+      <Tabs direction="horizontal" size="medium" mode="default" align="start">
+        <TabsItem
+          label="Лента"
+          selected={active === 0}
+          onClick={() => {
+            setActive(0);
+          }}
+        />
+        <TabsItem
+          label="Уведомления"
+          badge={<Counter value={999999999} />}
+          selected={active === 1}
+          onClick={() => {
+            setActive(1);
+          }}
+        />
+        <TabsItem
+          label="Сообщения"
+          badge={<Counter value={1234567890123} rounded />}
+          selected={active === 2}
+          onClick={() => {
+            setActive(2);
+          }}
+        />
+        <TabsItem
+          label="Профиль"
+          selected={active === 3}
+          onClick={() => {
+            setActive(3);
+          }}
+        />
+      </Tabs>
+    );
+  }
+};
+
+export const OverflowWithLargeCounterSegmented: Story = {
+  name: 'Overflow / Large Counter / Segmented',
+  decorators: [
+    (Story) => (
+      <div style={{ width: 320 }}>
+        <Story />
+      </div>
+    )
+  ],
+  render: () => {
+    const [active, setActive] = useState(0);
+
+    return (
+      <Tabs direction="horizontal" size="medium" mode="segmented" align="start">
+        <TabsItem
+          label="Лента"
+          selected={active === 0}
+          onClick={() => {
+            setActive(0);
+          }}
+        />
+        <TabsItem
+          label="Уведомления"
+          badge={<Counter value={999999999} />}
+          selected={active === 1}
+          onClick={() => {
+            setActive(1);
+          }}
+        />
+        <TabsItem
+          label="Сообщения"
+          badge={<Counter value={1234567890123} rounded />}
+          selected={active === 2}
+          onClick={() => {
+            setActive(2);
+          }}
+        />
+        <TabsItem
+          label="Профиль"
+          selected={active === 3}
+          onClick={() => {
+            setActive(3);
+          }}
+        />
+      </Tabs>
+    );
+  }
+};
+
+export const ValueBasedWithContent: Story = {
+  name: 'Value-based API / With Content',
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          width: 375,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 12
+        }}
+      >
+        <Story />
+      </div>
+    )
+  ],
+  render: () => {
+    const [activeTab, setActiveTab] = useState('feed');
+
+    return (
+      <>
+        <Tabs
+          value={activeTab}
+          onValueChange={setActiveTab}
+          direction="horizontal"
+          size="medium"
+          mode="default"
+          align="start"
+          activationMode="manual"
+        >
+          <TabsItem value="feed" label="Лента" icon={<Icon24Placeholder />} />
+          <TabsItem
+            value="messages"
+            label="Сообщения"
+            badge={<Counter value={12} />}
+          />
+          <TabsItem
+            value="profile"
+            label="Профиль"
+            icon={<Icon24Placeholder />}
+          />
+        </Tabs>
+
+        <TabsContent value="feed">Контент вкладки «Лента»</TabsContent>
+        <TabsContent value="messages">Контент вкладки «Сообщения»</TabsContent>
+        <TabsContent value="profile">Контент вкладки «Профиль»</TabsContent>
       </>
     );
   }

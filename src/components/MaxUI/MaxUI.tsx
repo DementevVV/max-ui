@@ -82,7 +82,7 @@ export const MaxUI = forwardRef<HTMLDivElement, MaxUIProps>((props, ref) => {
 
   return (
     <MaxUIContext.Provider value={config}>
-      <div ref={ref} className={rootClassName}>
+      <div ref={ref} className={rootClassName} data-maxui-root="true">
         {children}
       </div>
     </MaxUIContext.Provider>

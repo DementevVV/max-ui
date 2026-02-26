@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.1.20 — 2026-02-27
+
+### Added
+
+- **`InlineAlert`** — новый компонент инлайн-уведомлений с `appearance` (`themed`, `neutral`, `positive`, `negative`, `contrast-static`), опциональными `heading`/`description`, action-кнопкой, dismiss-кнопкой, `innerClassNames` и a11y-live-region (`role`, `aria-live`, `aria-atomic`).
+- **`Toast`** — новый компонент тостов и API уведомлений: `ToastProvider`, `useToast`, авто-закрытие, лимит видимых уведомлений, action с `autoClose`, dismiss/clear, настройка контейнера портала.
+- **`Tabs`** — value-based API: поддержка `value`, `defaultValue`, `onValueChange`, `activationMode` (`manual`/`automatic`) и новый `TabsContent` для связки вкладок с контентом.
+
+### Changed
+
+- **`Tabs` / `TabsItem`** — улучшены стили переполнения и адаптивности: корректная работа с длинными бейджами/счётчиками, ограничение ширины элементов, сегментированный режим теперь учитывает `align` (растягивание только при `stretch`).
+- **`Tabs`** — добавлена клавиатурная навигация (`Arrow`, `Home`, `End`) и улучшены ARIA-атрибуты (`tab`/`tabpanel` связи через id, `aria-label`/`aria-labelledby`).
+- **`MaxUI`** — корневой контейнер теперь помечается `data-maxui-root="true"` для корректного определения хоста порталов (например, `Toast`) внутри вложенных приложений.
+
+### Fixed
+
+- **`RadioGroup` / `RadioButton`** — улучшена доступность: `aria-orientation`, `aria-disabled` у группы и `focus-visible` контур у радио-кнопки.
+- **`RadioButton`** — `onValueChange` группы теперь вызывается только при реальном выборе (`checked === true`), что устраняет лишние срабатывания.
+- **`TabsItem`** — добавлен `focus-visible` state с визуальным индикатором для более предсказуемой клавиатурной навигации.
+
 ## 0.1.19 — 2026-02-26
 
 ### Fixed
