@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.19 — 2026-02-26
+
+### Fixed
+
+- **`Counter`** — цифра не центрировалась при единственном знаке (когда текст уже `min-width`): добавлено `justify-content: center`.
+- **`TabsItem`** — убран костыль `> * { justify-content: center }` из `.TabsItem__badge`, так как правильный фикс теперь находится в `Counter`.
+
+### Notes
+
+- **`Tabs`** уже поддерживает горизонтальный скролл при переполнении (`overflow: auto; scrollbar-width: none`). Работает для любого `align` кроме `stretch`.
+
 ## 0.1.18 — 2026-02-26
 
 ### Fixed

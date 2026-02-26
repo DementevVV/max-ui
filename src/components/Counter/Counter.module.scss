@@ -9,14 +9,13 @@
   border-radius: 12px;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   box-sizing: border-box;
 }
 
 // [Properties] Appearances and modes
 .Counter_appearance_themed {
-
   &.Counter_mode_filled {
-
     &.Counter_disabled {
       color: var(--states-text-disabled-contrast-static);
       background-color: var(--states-background-disabled-themed);
@@ -34,7 +33,6 @@
   }
 
   &.Counter_mode_inverse {
-
     &.Counter_disabled {
       color: var(--states-text-disabled-themed);
       background-color: var(--states-background-disabled-contrast-static);
@@ -52,9 +50,7 @@
   }
 }
 .Counter_appearance_neutral {
-
   &.Counter_mode_filled {
-
     &.Counter_disabled {
       color: var(--states-text-disabled-contrast);
       background-color: var(--states-background-disabled-neutral);
@@ -72,7 +68,6 @@
   }
 
   &.Counter_mode_inverse {
-
     &.Counter_disabled {
       color: var(--states-text-disabled-primary);
       background-color: var(--states-background-disabled-contrast);
@@ -90,9 +85,7 @@
   }
 }
 .Counter_appearance_neutral-themed {
-
   &.Counter_mode_filled {
-
     &.Counter_disabled {
       color: var(--states-text-disabled-contrast-static);
       background-color: var(--states-background-disabled-neutral-themed);
@@ -110,7 +103,6 @@
   }
 
   &.Counter_mode_inverse {
-
     &.Counter_disabled {
       color: var(--states-text-disabled-neutral-themed);
       background-color: var(--states-background-disabled-contrast-static);
@@ -128,9 +120,7 @@
   }
 }
 .Counter_appearance_neutral-static {
-
   &.Counter_mode_filled {
-
     &.Counter_disabled {
       color: var(--states-text-disabled-contrast-static);
       background-color: var(--states-background-disabled-neutral-static);
@@ -148,7 +138,6 @@
   }
 
   &.Counter_mode_inverse {
-
     &.Counter_disabled {
       color: var(--states-text-disabled-primary-static);
       background-color: var(--states-background-disabled-contrast-static);
@@ -166,9 +155,7 @@
   }
 }
 .Counter_appearance_negative {
-
   &.Counter_mode_filled {
-
     &.Counter_disabled {
       color: var(--states-text-disabled-contrast-static);
       background-color: var(--states-background-disabled-negative);
@@ -186,7 +173,6 @@
   }
 
   &.Counter_mode_inverse {
-
     &.Counter_disabled {
       color: var(--states-text-disabled-negative);
       background-color: var(--states-background-disabled-contrast-static);
