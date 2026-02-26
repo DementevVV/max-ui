@@ -65,6 +65,24 @@ export const States: Story = {
   )
 };
 
+export const WithLabel: Story = {
+  name: 'With Label',
+  render: (args) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <Checkbox {...args}>Я согласен с условиями использования</Checkbox>
+      <Checkbox {...args} defaultChecked>
+        Получать уведомления
+      </Checkbox>
+      <Checkbox {...args} indeterminate>
+        Выбрать все (неопределённое)
+      </Checkbox>
+      <Checkbox {...args} disabled>
+        Недоступный вариант
+      </Checkbox>
+    </div>
+  )
+};
+
 export const WithCell: Story = {
   name: 'Cell with Checkbox',
   decorators: [

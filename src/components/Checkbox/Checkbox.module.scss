@@ -133,6 +133,31 @@
   --MaxUi-Checkbox__box_borderColor: transparent;
 }
 
+// [Composition] Label wrap — rendered when children are passed
+.Checkbox__labelWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.Checkbox__labelWrap_disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+
+  // Prevent the inner Checkbox span from doubling down on opacity
+  .Checkbox_disabled {
+    opacity: 1;
+  }
+}
+
+.Checkbox__text {
+  font: inherit;
+  color: inherit;
+  line-height: 1.4;
+}
+
 // [Properties] Platform – Android
 .Checkbox_platform_android {
   --MaxUi-Checkbox__icon_color: var(--icon-contrast-static);

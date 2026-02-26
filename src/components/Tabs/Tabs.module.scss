@@ -149,6 +149,10 @@
 // [Part] Badge
 .TabsItem__badge {
   flex-shrink: 0;
+  // Переопределяем токен шрифта, который Counter наследует через CSS cascade.
+  // Без этого двух-/трёхзначные числа вызывают overflow и горизонтальный скролл.
+  --size-title-small: 11px;
+  --height-title-small: 1.2;
 }
 
 // [Property] Justify - выравнивание контента внутри вкладки

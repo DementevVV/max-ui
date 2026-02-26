@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.17 — 2026-02-26
+
+### Changed
+
+- **`Checkbox`** — добавлена поддержка `children`. При передаче дочерних элементов компонент автоматически оборачивается в `<label>` с отступом между чекбоксом и текстом. `className` в этом случае применяется к `<label>`-обёртке. Без `children` поведение прежнее — рендерится `<span>`. Добавлены стили `.Checkbox__labelWrap`, `.Checkbox__labelWrap_disabled`, `.Checkbox__text`.
+
+### Fixed
+
+- **`TabsItem`** — счётчик (`badge`) с двузначными/трёхзначными числами вызывал горизонтальный overflow и скролл страницы. Исправлено: в слоте `.TabsItem__badge` переопределяются CSS-токены `--size-title-small: 11px` и `--height-title-small: 1.2`.
+- **`ToolButton`** — `label` в column-flex с `align-items: center` не сжимался ниже content-width, что препятствовало `text-overflow: ellipsis`. Исправлено: `max-width: 100%` заменено на `width: 100%; min-width: 0`.
+
 ## 0.1.16 — 2026-02-26
 
 ### Added
