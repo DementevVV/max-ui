@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.18 — 2026-02-26
+
+### Fixed
+
+- **`ToolButton`** — текст метки смещался влево после фикса `width: 100%`. Добавлено `text-align: center` на `.ToolButton__label`.
+
 ## 0.1.17 — 2026-02-26
 
 ### Changed

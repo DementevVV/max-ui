@@ -1,6 +1,6 @@
 {
   "name": "@dementevdev/max-ui",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "author": "Vitalii Dementev",
   "module": "dist/index.js",
   "typings": "dist/index.d.ts",
