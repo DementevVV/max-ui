@@ -24,6 +24,13 @@
 
 - **`ClearableInput`** — помечен `@deprecated` в пользу `Input` с пропом `withClearButton` (в upstream переведён во внутренние). Экспорт и поведение сохраняются.
 
+### Infrastructure
+
+- **ESLint 9 (flat config)** — миграция с eslint 8 + deprecated `eslint-config-standard-with-typescript` на `eslint.config.js` (@eslint/js + typescript-eslint 8); удалены `eslint-plugin-n`/`eslint-plugin-promise` (не использовались), исправлен warning про версию React. Кастомные JSX-правила сохранены. [по образцу upstream `9d5a9cd`]
+- **Автоматизация релизов** — release-it + @release-it/conventional-changelog: `.release-it.json` (русские секции changelog, npm publish, GitHub Release), скрипты `release`/`release:dry`, процесс описан в RELEASING.md. С этого момента коммиты — строго Conventional Commits. [по образцу upstream `4109c8e`]
+- **Storybook** — новые стори: Foundations/Palette (219 цветовых токенов из `appearance.scss`, 8 групп — инструмент будущей Figma-сверки) и Foundations/Icons (галерея иконок); включён просмотр кода компонентов (`docs.source: dynamic`). [по мотивам upstream `a3c3831`, `fa00aa2`, `9d5a9cd`]
+- Lock-файл пересоздан под новый eslint-стек; `npm audit` — 0 уязвимостей.
+
 ### Notes
 
 - Пересборка `Counter` из upstream (единый проп `variant` вместо `appearance`/`mode`/`disabled`/`muted`) сознательно не перенесена: ломает публичный API и зависит от их новой токен-системы кнопок; наш Counter сохраняет фикс центрирования из 0.1.19. Возврат к вопросу — вместе с A4 (button-variants) после Figma-сверки.
