@@ -30,6 +30,7 @@
 - **Автоматизация релизов** — release-it + @release-it/conventional-changelog: `.release-it.json` (русские секции changelog, npm publish, GitHub Release), скрипты `release`/`release:dry`, процесс описан в RELEASING.md. С этого момента коммиты — строго Conventional Commits. [по образцу upstream `4109c8e`]
 - **Storybook** — новые стори: Foundations/Palette (219 цветовых токенов из `appearance.scss`, 8 групп — инструмент будущей Figma-сверки) и Foundations/Icons (галерея иконок); включён просмотр кода компонентов (`docs.source: dynamic`). [по мотивам upstream `a3c3831`, `fa00aa2`, `9d5a9cd`]
 - Lock-файл пересоздан под новый eslint-стек; `npm audit` — 0 уязвимостей.
+- **TypeScript 6.0.3** (версия upstream) — `moduleResolution: bundler`, явный `rootDir` в tsconfig.build.json (требование TS 6). Собранный `dist` побайтно идентичен сборке на TS 5.9.
 
 ### Notes
 
