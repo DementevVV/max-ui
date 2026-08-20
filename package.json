@@ -22,7 +22,7 @@
     "build": "rollup -c",
     "prepublishOnly": "npm run build",
     "prepare": "husky",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+    "lint": "eslint . --report-unused-disable-directives --max-warnings 0"
   },
   "files": [
     "./dist"
@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.0.1",
+    "@eslint/js": "^9.39.5",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-terser": "^1.0.0",
     "@rollup/plugin-typescript": "^12.1.0",
@@ -42,16 +43,15 @@
     "@svgr/rollup": "^8.1.0",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/eslint-plugin": "^8.67.0",
+    "@typescript-eslint/parser": "^8.67.0",
     "clsx": "^2.1.1",
-    "eslint": "^8.57.1",
-    "eslint-config-standard-with-typescript": "^43.0.1",
+    "eslint": "^9.39.5",
     "eslint-plugin-import": "^2.30.0",
-    "eslint-plugin-n": "^16.6.2",
-    "eslint-plugin-promise": "^6.6.0",
     "eslint-plugin-react": "^7.36.1",
     "eslint-plugin-simple-import-sort": "^14.0.0",
     "eslint-plugin-storybook": "^10.2.13",
+    "globals": "^16.0.0",
     "husky": "^9.1.6",
     "plop": "^4.0.1",
     "rollup": "^4.59.0",

@@ -16,9 +16,8 @@ export const getSubtree = (
   const { asChild, children } = options;
   if (!asChild) return typeof content === 'function' ? content(children) : content;
 
-  const firstChild = Children.only(children) as ReactElement;
+  const firstChild = Children.only(children) as ReactElement<{ children?: ReactNode }>;
   return cloneElement(firstChild, {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     children: typeof content === 'function' ? content(firstChild.props.children) : content
   });
 };
