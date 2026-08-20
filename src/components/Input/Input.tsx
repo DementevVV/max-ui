@@ -11,7 +11,7 @@ import { ClearableInput } from '../ClearableInput';
 import styles from './Input.module.scss';
 
 export type InputMode = 'primary' | 'secondary';
-export type InputElementKey = 'input' | 'clearButton' | 'body' | 'iconBefore' | 'iconAfter';
+export type InputElementKey = 'container' | 'input' | 'clearButton' | 'body' | 'iconBefore' | 'iconAfter' | 'hint';
 
 export interface InputProps extends ComponentProps<'input'> {
   mode?: InputMode
@@ -20,6 +20,7 @@ export interface InputProps extends ComponentProps<'input'> {
   iconAfter?: ReactNode
   innerClassNames?: InnerClassNamesProp<InputElementKey>
   withClearButton?: boolean
+  hint?: ReactNode
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props, forwardedRef) => {
@@ -29,6 +30,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, forwardedR
     iconAfter,
     innerClassNames,
     withClearButton,
+    hint,
     compact = false,
     mode = 'primary',
     ...rest
@@ -44,7 +46,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, forwardedR
     className
   );
 
-  return (
+  const field = (
     <label className={rootClassName}>
       {hasReactNode(iconBefore) && (
         <div className={clsx(styles.Input__iconBefore, innerClassNames?.iconBefore)}>
@@ -69,6 +71,18 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, forwardedR
         </div>
       )}
     </label>
+  );
+
+  // Обёртка появляется только вместе с hint, чтобы не менять DOM существующих использований
+  if (!hasReactNode(hint)) {
+    return field;
+  }
+
+  return (
+    <div className={clsx(innerClassNames?.container)}>
+      {field}
+      <div className={clsx(styles.Input__hint, innerClassNames?.hint)}>{hint}</div>
+    </div>
   );
 });
 

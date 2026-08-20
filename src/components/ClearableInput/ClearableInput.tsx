@@ -20,6 +20,11 @@ export interface ClearableInputProps extends ComponentProps<'input'> {
   withClearButton?: boolean
 }
 
+/**
+ * @deprecated Используйте `Input` с пропом `withClearButton` — в upstream (@maxhub/max-ui)
+ * компонент переведён во внутренние. Экспорт сохраняется для обратной совместимости,
+ * но новые возможности получает только `Input`.
+ */
 export const ClearableInput = forwardRef<HTMLInputElement, ClearableInputProps>((props, forwardedRef) => {
   const {
     className,

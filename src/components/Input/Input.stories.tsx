@@ -19,7 +19,8 @@ const meta = {
     iconBefore: true,
     disabled: false,
     compact: false,
-    withClearButton: true
+    withClearButton: true,
+    hint: ''
   },
   decorators: [
     (Story) => (

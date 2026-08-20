@@ -29,3 +29,11 @@
   box-sizing: border-box;
   width: 100%;
 }
+
+.Textarea__textarea::placeholder {
+  color: var(--text-secondary);
+
+  .Textarea_disabled & {
+    color: var(--states-text-disabled-primary);
+  }
+}

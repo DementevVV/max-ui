@@ -9,7 +9,7 @@ import { Tappable } from '../Tappable';
 import styles from './CellSimple.module.scss';
 
 export type CellSimpleHeight = 'compact' | 'normal';
-export type CellSimpleInnerElementKey = 'before' | 'after' | 'chevron' | 'content' | 'title' | 'subtitle' | 'overline';
+export type CellSimpleInnerElementKey = 'before' | 'after' | 'chevron' | 'content' | 'title' | 'subtitle' | 'overline' | 'link';
 
 interface CellSimpleOwnProps extends AsChildProp {
   height?: CellSimpleHeight
@@ -22,6 +22,8 @@ interface CellSimpleOwnProps extends AsChildProp {
   showChevron?: boolean
   as?: ElementType
   disabled?: boolean
+  separator?: boolean
+  link?: string
 }
 
 export type CellSimpleProps = MergeProps<ComponentProps<'div'>, CellSimpleOwnProps>;
@@ -41,6 +43,8 @@ export const CellSimple = forwardRef<HTMLDivElement, CellSimpleProps>((props, fo
     innerClassNames,
     height = 'normal',
     as = 'div',
+    separator,
+    link,
     ...rest
   } = props;
 
@@ -48,7 +52,8 @@ export const CellSimple = forwardRef<HTMLDivElement, CellSimpleProps>((props, fo
     styles.CellSimple,
     styles[`CellSimple_height_${height}`],
     {
-      [styles.CellSimple_disabled]: disabled
+      [styles.CellSimple_disabled]: disabled,
+      [styles.CellSimple_separator]: separator
     },
     className
   );
@@ -90,6 +95,16 @@ export const CellSimple = forwardRef<HTMLDivElement, CellSimpleProps>((props, fo
             )}
 
             {children}
+            {link && (
+              <a
+                className={clsx(styles.CellSimple__link, innerClassNames?.link)}
+                href={link}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {link}
+              </a>
+            )}
           </div>
         ))}
       </Slottable>

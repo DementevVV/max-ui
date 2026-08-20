@@ -1,5 +1,33 @@
 # Changelog
 
+## Unreleased
+
+Точечный перенос изменений из upstream `@maxhub/max-ui` (см. UPSTREAM-SYNC-PLAN.md, секция A). У каждого пункта указан коммит upstream.
+
+### Added
+
+- **`Spinner`** — платформенный рендеринг: iOS-вариант (8 лучей с поочерёдным затуханием) и Android-вариант (кольцо на `conic-gradient` без SVG), выбор автоматически через `usePlatform()`. Убран рендер через `<foreignObject>`. Публичный API не изменился (`size`, `appearance`, `role="status"`); типы вынесены в `types.ts`, добавлен `SpinnerPlatformProps`. [upstream `27ecd42`, `a1c7649`]
+- **`Input`** — проп `hint?: ReactNode`: подпись под полем; ключи `container` и `hint` в `innerClassNames`. Обёртка-контейнер рендерится только при переданном `hint` — DOM существующих использований не меняется. [upstream `f0fe188`, `97eaaa0`]
+- **`CellSimple`** — пропы `separator?: boolean` (верхняя разделительная линия) и `link?: string` (ссылка под контентом, target="_blank"); ключ `link` в `innerClassNames`. [upstream `0c8c125`]
+- **Иконки** — экспортируются из корня пакета: `Icon16Chevron`, `Icon16CloseIos`, `Icon16SearchOutline`, `Icon20CloseAndroid`, `Icon20CloseFilled`, `Icon24CloseAndroid` + тип `SvgIconComponent`. Декларации типов в `dist` самодостаточны — в отличие от upstream, где опубликованный `dist/icons/index.d.ts` ссылается на несуществующие `.svg`-модули. [upstream `3850804`]
+
+### Changed
+
+- **`AvatarOnlineDot`** — цвет индикатора онлайна: `--icon-themed` → `--icon-positive`; индикатор скрывается при размере контейнера меньше 16px или больше 80px. [upstream `644226e`]
+- **`AvatarContainer`** — размер аватара ограничен диапазоном 16–200px. [upstream `644226e`]
+
+### Fixed
+
+- **`Textarea`** — задан цвет плейсхолдера (`--text-secondary`; в disabled — `--states-text-disabled-primary`). [upstream `4701520`]
+
+### Deprecated
+
+- **`ClearableInput`** — помечен `@deprecated` в пользу `Input` с пропом `withClearButton` (в upstream переведён во внутренние). Экспорт и поведение сохраняются.
+
+### Notes
+
+- Пересборка `Counter` из upstream (единый проп `variant` вместо `appearance`/`mode`/`disabled`/`muted`) сознательно не перенесена: ломает публичный API и зависит от их новой токен-системы кнопок; наш Counter сохраняет фикс центрирования из 0.1.19. Возврат к вопросу — вместе с A4 (button-variants) после Figma-сверки.
+
 ## 0.1.20 — 2026-02-27
 
 ### Added

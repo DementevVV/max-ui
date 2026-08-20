@@ -75,3 +75,10 @@
     color: var(--states-text-disabled-primary);
   }
 }
+
+// [Parts] Hint
+.Input__hint {
+  padding: 4px 12px 0;
+  @include typography.bodySmall;
+  color: var(--text-tertiary);
+}
