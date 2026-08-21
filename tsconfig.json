@@ -21,6 +21,5 @@
     ".storybook/**/*.ts",
     "rollup.config.js"
   ],
-  "files": ["types/env.d.ts"],
   "exclude": ["dist"]
 }
