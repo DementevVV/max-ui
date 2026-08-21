@@ -25,6 +25,45 @@
 * **typescript:** move ambient module declarations into src ([f654a23](https://github.com/DementevVV/max-ui/commit/f654a23ffed0c00cb0e42ce0deb653a2317b31e8))
 * **typescript:** upgrade to 6.0.3 ([a6a3453](https://github.com/DementevVV/max-ui/commit/a6a3453f69cafd0f1102f54614816f58fde65a56))
 
+### Подробно
+
+Точечный перенос изменений из upstream `@maxhub/max-ui`. У каждого пункта указан коммит upstream.
+
+#### Added
+
+- **`Spinner`** — платформенный рендеринг: iOS-вариант (8 лучей с поочерёдным затуханием) и Android-вариант (кольцо на `conic-gradient` без SVG), выбор автоматически через `usePlatform()`. Убран рендер через `<foreignObject>`. Публичный API не изменился (`size`, `appearance`, `role="status"`); типы вынесены в `types.ts`, добавлен `SpinnerPlatformProps`. [upstream `27ecd42`, `a1c7649`]
+- **`Input`** — проп `hint?: ReactNode`: подпись под полем; ключи `container` и `hint` в `innerClassNames`. Обёртка-контейнер рендерится только при переданном `hint` — DOM существующих использований не меняется. [upstream `f0fe188`, `97eaaa0`]
+- **`CellSimple`** — пропы `separator?: boolean` (верхняя разделительная линия) и `link?: string` (ссылка под контентом, target="_blank"); ключ `link` в `innerClassNames`. [upstream `0c8c125`]
+- **Иконки** — экспортируются из корня пакета: `Icon16Chevron`, `Icon16CloseIos`, `Icon16SearchOutline`, `Icon20CloseAndroid`, `Icon20CloseFilled`, `Icon24CloseAndroid` + тип `SvgIconComponent`. Декларации типов в `dist` самодостаточны — в отличие от upstream, где опубликованный `dist/icons/index.d.ts` ссылается на несуществующие `.svg`-модули. [upstream `3850804`]
+
+- **`Button` / `IconButton`** — новый канонический API дизайн-системы: проп `variant` (`primary | secondary | ghost | primary-contrast | secondary-contrast | overlay | destructive`, семейство `Button/*` из Figma) и размер `xsmall`. С `variant` действует новая шкала габаритов (32/40/52/60, радиусы 8–20; IconButton — квадрат со скруглением 45%) и Action-типографика. **Legacy-API (`mode`/`appearance`) полностью сохранён**: без `variant` рендер не изменился (доказано побайтным сравнением собранного CSS до/после — легаси-правила идентичны). Значения и стили — порт upstream `940b842` + рефактор `button-variants`; сверены с Figma-макетом дизайн-системы MAX. [upstream `940b842`, `ba2570c` (частично)]
+- **Палитра** — добавлены токены нового дизайна: семейство `--background-button-secondary*`/`--background-button-overlay*` (light/dark), `--background-accent-contrast-secondary-static`, `--background-accent-neutral-default`, `--background-mute`, `--background-menu`, `--promo-text-step-1`, `--text-primary-inverse`; `--states-background-hovered-destructive` (каноничное имя, `-negative` сохранён как legacy-алиас). [upstream diff appearance.scss]
+
+#### Changed
+
+- **`AvatarOnlineDot`** — цвет индикатора онлайна: `--icon-themed` → `--icon-positive`; индикатор скрывается при размере контейнера меньше 16px или больше 80px. [upstream `644226e`]
+- **`AvatarContainer`** — размер аватара ограничен диапазоном 16–200px. [upstream `644226e`]
+
+#### Fixed
+
+- **`Textarea`** — задан цвет плейсхолдера (`--text-secondary`; в disabled — `--states-text-disabled-primary`). [upstream `4701520`]
+
+#### Deprecated
+
+- **`ClearableInput`** — помечен `@deprecated` в пользу `Input` с пропом `withClearButton` (в upstream переведён во внутренние). Экспорт и поведение сохраняются.
+
+#### Infrastructure
+
+- **ESLint 9 (flat config)** — миграция с eslint 8 + deprecated `eslint-config-standard-with-typescript` на `eslint.config.js` (@eslint/js + typescript-eslint 8); удалены `eslint-plugin-n`/`eslint-plugin-promise` (не использовались), исправлен warning про версию React. Кастомные JSX-правила сохранены. [по образцу upstream `9d5a9cd`]
+- **Автоматизация релизов** — release-it + @release-it/conventional-changelog: `.release-it.json` (русские секции changelog, npm publish, GitHub Release), скрипты `release`/`release:dry`, процесс описан в RELEASING.md. С этого момента коммиты — строго Conventional Commits. [по образцу upstream `4109c8e`]
+- **Storybook** — новые стори: Foundations/Palette (219 цветовых токенов из `appearance.scss`, 8 групп — инструмент будущей Figma-сверки) и Foundations/Icons (галерея иконок); включён просмотр кода компонентов (`docs.source: dynamic`). [по мотивам upstream `a3c3831`, `fa00aa2`, `9d5a9cd`]
+- Lock-файл пересоздан под новый eslint-стек; `npm audit` — 0 уязвимостей.
+- **TypeScript 6.0.3** (версия upstream) — `moduleResolution: bundler`, явный `rootDir` в tsconfig.build.json (требование TS 6). Собранный `dist` побайтно идентичен сборке на TS 5.9.
+
+#### Notes
+
+- Пересборка `Counter` из upstream (единый проп `variant` вместо `appearance`/`mode`/`disabled`/`muted`) сознательно не перенесена: ломает публичный API и зависит от их новой токен-системы кнопок; наш Counter сохраняет фикс центрирования из 0.1.19. Возврат к вопросу — вместе с A4 (button-variants) после Figma-сверки.
+
 ## 0.1.20 — 2026-02-27
 
 ### Added
