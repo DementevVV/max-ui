@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.2.0](https://github.com/DementevVV/max-ui/compare/v0.1.20...v0.2.0) (2026-08-21)
+
+### ✨ Новые возможности
+
+* **Button, IconButton:** add design-system variant API ([a7342d4](https://github.com/DementevVV/max-ui/commit/a7342d42426e683ab46551919d507dba1d210a7b))
+* **components:** port section A improvements from upstream ([ebe1bcd](https://github.com/DementevVV/max-ui/commit/ebe1bcd5f5b63872d47b1911b1d3f0aed592bb42))
+
+### 📚 Документация
+
+* **changelog:** fold unreleased notes before 0.2.0 release ([3b65d63](https://github.com/DementevVV/max-ui/commit/3b65d63cdf3eebed1cea217526216b9ae1de79f3))
+
+### 🛠 Прочее
+
+* **security:** bump rollup and override minimatch patched versions ([b91f8f0](https://github.com/DementevVV/max-ui/commit/b91f8f0e997c316c498192995a865ebabf5c480e))
+* **lint:** migrate to ESLint 9 flat config ([7a1c11c](https://github.com/DementevVV/max-ui/commit/7a1c11cc75fe92999ee720ed7f666e80a744c932))
+* **storybook:** palette and icons stories, source view ([d79c883](https://github.com/DementevVV/max-ui/commit/d79c8834367bcd956960ff63a3e3cf6aabe9a633))
+* update devDependencies and overrides in package.json ([25a643e](https://github.com/DementevVV/max-ui/commit/25a643ee88105eab8312b508c6fd6d9b3fe687c4))
+* update serialize-javascript to version 7.0.3 and remove randombytes dependency ([681b248](https://github.com/DementevVV/max-ui/commit/681b248aa0ba69f5b0249b2e896011625c308cf4))
+
+### 📦 Сборка
+
+* **release:** add release-it automation ([96662bf](https://github.com/DementevVV/max-ui/commit/96662bf9776f93b30b26339eafc446143c91fd85))
+* **typescript:** move ambient module declarations into src ([f654a23](https://github.com/DementevVV/max-ui/commit/f654a23ffed0c00cb0e42ce0deb653a2317b31e8))
+* **typescript:** upgrade to 6.0.3 ([a6a3453](https://github.com/DementevVV/max-ui/commit/a6a3453f69cafd0f1102f54614816f58fde65a56))
+
 ## 0.1.20 — 2026-02-27
 
 ### Added
