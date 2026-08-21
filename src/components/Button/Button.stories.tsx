@@ -8,13 +8,17 @@ import { hideArgsControl } from '../../../.storybook/shared/args-manager';
 import { useColorScheme } from '../../hooks';
 import { Counter } from '../Counter';
 import { Dot } from '../Dot';
-import { Button, type ButtonProps, type ButtonSize } from './Button';
+import { Button, type ButtonProps, type ButtonSize, type ButtonVariant } from './Button';
 
 const iconsMapping: Record<ButtonSize, ReactNode> = {
+  xsmall: <Icon16Placeholder />,
   small: <Icon16Placeholder />,
   medium: <Icon24Placeholder />,
   large: <Icon24Placeholder />
 };
+
+const allVariants: ButtonVariant[] = ['primary', 'secondary', 'ghost', 'primary-contrast', 'secondary-contrast', 'overlay', 'destructive'];
+const allSizes: ButtonSize[] = ['xsmall', 'small', 'medium', 'large'];
 
 const meta = {
   title: 'Common/Button',
@@ -24,6 +28,13 @@ const meta = {
 
     iconBefore: { control: 'boolean' },
     iconAfter: { control: 'boolean' },
+    variant: {
+      options: [undefined, ...allVariants],
+      control: {
+        type: 'select',
+        labels: { undefined: 'None (legacy mode/appearance)' }
+      }
+    },
     indicator: {
       options: [0, 1, 2],
       mapping: [undefined, <Counter key="counter" value={123456} />, <Dot key="dot" aria-label="Есть новые уведомления" />],
@@ -52,7 +63,13 @@ const meta = {
       return (
         <OverlayContainer
           style={{ width: 375 }}
-          appearance={context.args.appearance === 'contrast-static' || colorScheme === 'dark' ? 'dark' : 'light'}
+          appearance={
+            context.args.appearance === 'contrast-static' ||
+            ['primary-contrast', 'secondary-contrast', 'overlay'].includes(context.args.variant as string) ||
+            colorScheme === 'dark'
+              ? 'dark'
+              : 'light'
+          }
         >
           <Story />
         </OverlayContainer>
@@ -106,6 +123,36 @@ export const AsLink: Story = {
           {children}
         </a>
       </Button>
+    );
+  }
+};
+
+export const Variants: Story = {
+  name: 'Variants (новый API)',
+  args: {
+    children: 'Button'
+  },
+  render: ({ children }) => {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 16, padding: 16 }}>
+        {allVariants.map((variant) => (
+          <div
+            key={variant}
+            style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}
+          >
+            <span style={{ width: 150, color: 'var(--text-secondary)', fontSize: 13 }}>{variant}</span>
+            {allSizes.map((size) => (
+              <Button
+                key={size}
+                variant={variant}
+                size={size}
+              >
+                {children}
+              </Button>
+            ))}
+          </div>
+        ))}
+      </div>
     );
   }
 };

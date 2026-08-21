@@ -10,15 +10,17 @@ import {
 import { getSubtree } from '../../helpers';
 import { useButtonLikeProps, usePlatform } from '../../hooks';
 import { type AsChildProp, type InnerClassNamesProp } from '../../types';
+import { type ButtonVariant } from '../Button';
 import { Ripple } from '../Ripple';
 import { Spinner } from '../Spinner';
 import {
   getIconButtonSpinnerAppearance,
-  getIconButtonSpinnerSize
+  getIconButtonSpinnerSize,
+  getIconButtonVariantSpinnerAppearance
 } from './helpers';
 import styles from './IconButton.module.scss';
 
-export type IconButtonSize = 'small' | 'medium' | 'large';
+export type IconButtonSize = 'xsmall' | 'small' | 'medium' | 'large';
 export type IconButtonMode = 'primary' | 'secondary' | 'tertiary' | 'link';
 export type IconButtonAppearance =
   | 'themed'
@@ -26,15 +28,25 @@ export type IconButtonAppearance =
   | 'neutral'
   | 'neutral-themed'
   | 'contrast-static';
+export type IconButtonVariant = ButtonVariant;
 export type IconButtonInnerElementKey =
   | 'content'
   | 'spinnerContainer'
   | 'spinner';
 
 export interface IconButtonProps extends ComponentProps<'button'>, AsChildProp {
+  /**
+   * `xsmall` доступен только вместе с `variant` (в legacy-API трактуется как `small`)
+   */
   size?: IconButtonSize
   mode?: IconButtonMode
   appearance?: IconButtonAppearance
+  /**
+   * Новый канонический API дизайн-системы MAX (семейство `Button/*` из Figma).
+   * Если задан — `mode`/`appearance` игнорируются, размеры берутся из новой шкалы
+   * (квадрат 32/40/52/60 со скруглением 45%).
+   */
+  variant?: IconButtonVariant
   disabled?: boolean
   loading?: boolean
   innerClassNames?: InnerClassNamesProp<IconButtonInnerElementKey>
@@ -53,6 +65,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       size = 'medium',
       mode = 'primary',
       appearance = 'themed',
+      variant,
       ...rest
     } = props;
 
@@ -69,7 +82,10 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
     });
 
     const inactive = disabled || loading;
-    const withRipple = platform === 'android' && mode !== 'link';
+    const withVariant = variant != null;
+    const withRipple = platform === 'android' && (withVariant || mode !== 'link');
+    // в legacy-API нет xsmall-габаритов — не оставляем кнопку без размерного класса
+    const sizeClassKey = !withVariant && size === 'xsmall' ? 'small' : size;
 
     const clickHandler: MouseEventHandler<HTMLButtonElement> = (event) => {
       if (loading) return;
@@ -78,9 +94,10 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
 
     const rootClassName = clsx(
       styles.IconButton,
-      styles[`IconButton_appearance_${appearance}`],
-      styles[`IconButton_mode_${mode}`],
-      styles[`IconButton_size_${size}`],
+      withVariant
+        ? [styles.IconButton_withVariant, styles[`IconButton_variant_${variant}`]]
+        : [styles[`IconButton_appearance_${appearance}`], styles[`IconButton_mode_${mode}`]],
+      styles[`IconButton_size_${sizeClassKey}`],
       {
         [styles.IconButton_loading]: loading,
         [styles.IconButton_disabled]: disabled,
@@ -108,7 +125,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
             <Spinner
               className={clsx(innerClassNames?.spinner)}
               size={getIconButtonSpinnerSize(size)}
-              appearance={getIconButtonSpinnerAppearance(appearance, mode)}
+              appearance={withVariant ? getIconButtonVariantSpinnerAppearance(variant) : getIconButtonSpinnerAppearance(appearance, mode)}
             />
           </span>
         )}

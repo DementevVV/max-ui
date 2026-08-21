@@ -2,12 +2,29 @@ import { cloneElement, isValidElement, type ReactElement, type ReactNode } from 
 
 import { Counter, type CounterProps } from '../Counter';
 import { type SpinnerAppearance } from '../Spinner';
-import { type ButtonAppearance, type ButtonMode, type ButtonSize } from './Button';
+import { type ButtonAppearance, type ButtonMode, type ButtonSize, type ButtonVariant } from './Button';
 
 export const getButtonSpinnerSize = (buttonSize: ButtonSize): number => {
   switch (buttonSize) {
+    case 'xsmall': return 16;
     case 'small': return 20;
     default: return 24;
+  }
+};
+
+export const getButtonVariantSpinnerAppearance = (buttonVariant: ButtonVariant): SpinnerAppearance => {
+  switch (buttonVariant) {
+    case 'primary':
+    case 'destructive':
+      return 'contrast-static';
+    case 'secondary':
+    case 'ghost':
+      return 'themed';
+    case 'primary-contrast':
+      return 'primary-static';
+    case 'secondary-contrast':
+    case 'overlay':
+      return 'contrast-static';
   }
 };
 
@@ -46,7 +63,25 @@ export const getButtonCounterAppearance = (buttonAppearance: ButtonAppearance, b
   return { mode: buttonMode === 'primary' ? 'inverse' : 'filled', appearance: 'themed' };
 };
 
-export const injectButtonIndicator = (indicatorNode: ReactNode, buttonAppearance: ButtonAppearance, buttonMode: ButtonMode, disabled?: boolean): ReactNode => {
+// Соответствие upstream-таблицы (Counter variant) нашему Counter API (appearance × mode)
+export const getButtonVariantCounterAppearance = (buttonVariant: ButtonVariant): Pick<CounterProps, 'appearance' | 'mode'> => {
+  switch (buttonVariant) {
+    case 'primary':
+      return { mode: 'inverse', appearance: 'themed' };
+    case 'destructive':
+      return { mode: 'inverse', appearance: 'negative' };
+    case 'secondary':
+    case 'ghost':
+    case 'secondary-contrast':
+      return { mode: 'filled', appearance: 'neutral' };
+    case 'primary-contrast':
+      return { mode: 'filled', appearance: 'neutral-static' };
+    case 'overlay':
+      return { mode: 'inverse', appearance: 'neutral-static' };
+  }
+};
+
+export const injectButtonIndicator = (indicatorNode: ReactNode, buttonAppearance: ButtonAppearance, buttonMode: ButtonMode, disabled?: boolean, buttonVariant?: ButtonVariant): ReactNode => {
   if (!isValidElement(indicatorNode)) {
     return indicatorNode;
   }
@@ -55,7 +90,9 @@ export const injectButtonIndicator = (indicatorNode: ReactNode, buttonAppearance
     return cloneElement(
       indicatorNode as ReactElement<CounterProps>,
       {
-        ...getButtonCounterAppearance(buttonAppearance, buttonMode),
+        ...(buttonVariant != null
+          ? getButtonVariantCounterAppearance(buttonVariant)
+          : getButtonCounterAppearance(buttonAppearance, buttonMode)),
         disabled
       }
     );

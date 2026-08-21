@@ -15,3 +15,57 @@
   min-width: 52px;
   border-radius: var(--size-border-radius-action-large);
 }
+
+// [Variant API] Размеры нового API дизайн-системы (variant у Button/IconButton).
+// Значения из upstream/Figma; legacy-миксины выше не трогаем — старые кнопки не должны менять габариты.
+@mixin buttonVariantXSmallSize {
+  height: 32px;
+  min-width: 40px;
+  border-radius: 8px;
+  padding: 6px 12px;
+}
+
+@mixin buttonVariantSmallSize {
+  height: 40px;
+  min-width: 48px;
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+@mixin buttonVariantMediumSize {
+  height: 52px;
+  min-width: 56px;
+  border-radius: 16px;
+  padding: 16px 20px;
+}
+
+@mixin buttonVariantLargeSize {
+  height: 60px;
+  min-width: 64px;
+  border-radius: 20px;
+  padding: 18px 22px;
+}
+
+@mixin iconButtonVariantXSmallSize {
+  width: 32px;
+  height: 32px;
+  border-radius: 45%;
+}
+
+@mixin iconButtonVariantSmallSize {
+  width: 40px;
+  height: 40px;
+  border-radius: 45%;
+}
+
+@mixin iconButtonVariantMediumSize {
+  width: 52px;
+  height: 52px;
+  border-radius: 45%;
+}
+
+@mixin iconButtonVariantLargeSize {
+  width: 60px;
+  height: 60px;
+  border-radius: 45%;
+}

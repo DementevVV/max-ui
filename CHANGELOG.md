@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-Точечный перенос изменений из upstream `@maxhub/max-ui` (см. UPSTREAM-SYNC-PLAN.md, секция A). У каждого пункта указан коммит upstream.
+Точечный перенос изменений из upstream `@maxhub/max-ui`. У каждого пункта указан коммит upstream.
 
 ### Added
 
@@ -10,6 +10,9 @@
 - **`Input`** — проп `hint?: ReactNode`: подпись под полем; ключи `container` и `hint` в `innerClassNames`. Обёртка-контейнер рендерится только при переданном `hint` — DOM существующих использований не меняется. [upstream `f0fe188`, `97eaaa0`]
 - **`CellSimple`** — пропы `separator?: boolean` (верхняя разделительная линия) и `link?: string` (ссылка под контентом, target="_blank"); ключ `link` в `innerClassNames`. [upstream `0c8c125`]
 - **Иконки** — экспортируются из корня пакета: `Icon16Chevron`, `Icon16CloseIos`, `Icon16SearchOutline`, `Icon20CloseAndroid`, `Icon20CloseFilled`, `Icon24CloseAndroid` + тип `SvgIconComponent`. Декларации типов в `dist` самодостаточны — в отличие от upstream, где опубликованный `dist/icons/index.d.ts` ссылается на несуществующие `.svg`-модули. [upstream `3850804`]
+
+- **`Button` / `IconButton`** — новый канонический API дизайн-системы: проп `variant` (`primary | secondary | ghost | primary-contrast | secondary-contrast | overlay | destructive`, семейство `Button/*` из Figma) и размер `xsmall`. С `variant` действует новая шкала габаритов (32/40/52/60, радиусы 8–20; IconButton — квадрат со скруглением 45%) и Action-типографика. **Legacy-API (`mode`/`appearance`) полностью сохранён**: без `variant` рендер не изменился (доказано побайтным сравнением собранного CSS до/после — легаси-правила идентичны). Значения и стили — порт upstream `940b842` + рефактор `button-variants`; сверены с Figma-макетом дизайн-системы MAX. [upstream `940b842`, `ba2570c` (частично)]
+- **Палитра** — добавлены токены нового дизайна: семейство `--background-button-secondary*`/`--background-button-overlay*` (light/dark), `--background-accent-contrast-secondary-static`, `--background-accent-neutral-default`, `--background-mute`, `--background-menu`, `--promo-text-step-1`, `--text-primary-inverse`; `--states-background-hovered-destructive` (каноничное имя, `-negative` сохранён как legacy-алиас). [upstream diff appearance.scss]
 
 ### Changed
 

@@ -11,7 +11,7 @@ const checkerboard: CSSProperties = {
   backgroundPosition: '0 0, 0 3px, 3px -3px, -3px 0'
 };
 
-type PaletteGroupName = 'Accent' | 'Background' | 'Gradients' | 'Icon' | 'Shadow' | 'States' | 'Stroke' | 'Text';
+type PaletteGroupName = 'Accent' | 'Background' | 'Gradients' | 'Icon' | 'Promo' | 'Shadow' | 'States' | 'Stroke' | 'Text';
 
 // Список сгенерирован из src/styles/variables/appearance.scss (уникальные имена переменных).
 // При изменении палитры перегенерировать: grep -oE '\-\-[a-z0-9-]+' src/styles/variables/appearance.scss | sort -u
@@ -43,8 +43,22 @@ const palette: Record<PaletteGroupName, string[]> = {
     '--background-accent-contrast-static',
     '--background-accent-contrast',
     '--background-accent-contrast-secondary',
+    '--background-accent-contrast-secondary-static',
+    '--background-button-secondary',
+    '--background-button-secondary-hovered',
+    '--background-button-secondary-pressed',
+    '--background-button-secondary-disabled',
+    '--background-button-secondary-contrast',
+    '--background-button-secondary-contrast-hovered',
+    '--background-button-secondary-contrast-pressed',
+    '--background-button-secondary-contrast-disabled',
+    '--background-button-overlay',
+    '--background-button-overlay-hovered',
+    '--background-button-overlay-pressed',
+    '--background-button-overlay-disabled',
     '--background-accent-negative',
     '--background-accent-neutral',
+    '--background-accent-neutral-default',
     '--background-accent-neutral-fade',
     '--background-accent-neutral-fade-secondary',
     '--background-accent-neutral-static',
@@ -58,7 +72,9 @@ const palette: Record<PaletteGroupName, string[]> = {
     '--background-local-top-bar-primary-android',
     '--background-local-top-bar-primary-i-os',
     '--background-local-top-bar-secondary-android',
-    '--background-local-top-bar-secondary-i-os'
+    '--background-local-top-bar-secondary-i-os',
+    '--background-mute',
+    '--background-menu'
   ],
   Gradients: [
     '--gradients-banner-dk-background-fantasy-step-1',
@@ -118,6 +134,9 @@ const palette: Record<PaletteGroupName, string[]> = {
     '--icon-tertiary',
     '--icon-themed'
   ],
+  Promo: [
+    '--promo-text-step-1'
+  ],
   Shadow: [
     '--shadow-android-tab-bar-default-color',
     '--shadow-android-tab-bar-scroll-color',
@@ -157,6 +176,7 @@ const palette: Record<PaletteGroupName, string[]> = {
     '--states-background-hovered-card',
     '--states-background-hovered-contrast-static',
     '--states-background-hovered-negative',
+    '--states-background-hovered-destructive',
     '--states-background-hovered-neutral',
     '--states-background-hovered-neutral-fade',
     '--states-background-hovered-neutral-themed',
@@ -245,6 +265,7 @@ const palette: Record<PaletteGroupName, string[]> = {
     '--text-neutral-themed',
     '--text-positive',
     '--text-primary',
+    '--text-primary-inverse',
     '--text-primary-static',
     '--text-secondary',
     '--text-subhead',
@@ -313,6 +334,9 @@ export const GradientsPalette: Story = {
 };
 export const IconPalette: Story = {
   render: () => (<PaletteGroup variables={palette.Icon} title='Icon' />)
+};
+export const PromoPalette: Story = {
+  render: () => (<PaletteGroup variables={palette.Promo} title='Promo' />)
 };
 export const ShadowPalette: Story = {
   render: () => (<PaletteGroup variables={palette.Shadow} title='Shadow' />)

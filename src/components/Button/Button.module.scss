@@ -1,5 +1,6 @@
 @use '../../styles/shared-mixins/button-sizes';
 @use '../../styles/shared-mixins/button-appearances';
+@use '../../styles/shared-mixins/button-variants';
 @use '../../styles/shared-mixins/typography';
 
 .Button {
@@ -147,6 +148,67 @@
 }
 .Button_appearance_contrast-static:where(.Button_mode_link) {
   @include button-appearances.buttonLinkContrastStatic('Button', true);
+}
+
+// [Properties] Variants — новый API дизайн-системы (проп variant, семейство Button/* из Figma)
+.Button_variant_primary {
+  @include button-variants.buttonVariantPrimary('Button', true);
+}
+.Button_variant_secondary {
+  @include button-variants.buttonVariantSecondary('Button', true);
+}
+.Button_variant_ghost {
+  @include button-variants.buttonVariantGhost('Button', true);
+}
+.Button_variant_primary-contrast {
+  @include button-variants.buttonVariantPrimaryContrast('Button', true);
+}
+.Button_variant_secondary-contrast {
+  @include button-variants.buttonVariantSecondaryContrast('Button', true);
+}
+.Button_variant_overlay {
+  @include button-variants.buttonVariantOverlay('Button', true);
+}
+.Button_variant_destructive {
+  @include button-variants.buttonVariantDestructive('Button', true);
+}
+
+// [Properties] Размеры и типографика нового API — активны только вместе с variant,
+// чтобы legacy-кнопки (mode/appearance) не меняли габариты
+.Button_withVariant {
+  &.Button_size_xsmall {
+    @include button-sizes.buttonVariantXSmallSize;
+  }
+  &.Button_size_small {
+    @include button-sizes.buttonVariantSmallSize;
+  }
+  &.Button_size_medium {
+    @include button-sizes.buttonVariantMediumSize;
+  }
+  &.Button_size_large {
+    @include button-sizes.buttonVariantLargeSize;
+  }
+
+  &.Button_size_xsmall .Button__content {
+    @include typography.actionSmall;
+  }
+  &.Button_size_small .Button__content {
+    @include typography.actionMedium;
+  }
+  &.Button_size_medium .Button__content,
+  &.Button_size_large .Button__content {
+    @include typography.actionLarge;
+
+    font-weight: 500;
+  }
+
+  &.Button_size_xsmall .Button__iconBefore {
+    margin-right: var(--spacing-size-xs);
+  }
+  &.Button_size_xsmall .Button__iconAfter,
+  &.Button_size_xsmall .Button__indicator {
+    margin-left: var(--spacing-size-xs);
+  }
 }
 
 // [Parts] Content

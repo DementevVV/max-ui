@@ -23,8 +23,22 @@
   --background-accent-contrast-static: rgb(255 255 255);
   --background-accent-contrast: rgb(255 255 255);
   --background-accent-contrast-secondary: rgb(255 255 255);
+  --background-accent-contrast-secondary-static: rgb(233 235 241);
+  --background-button-secondary: rgb(233 235 241);
+  --background-button-secondary-hovered: rgb(238 239 244);
+  --background-button-secondary-pressed: rgb(223 227 234);
+  --background-button-secondary-disabled: rgb(233 235 241);
+  --background-button-secondary-contrast: rgb(233 235 241);
+  --background-button-secondary-contrast-hovered: rgb(238 239 244);
+  --background-button-secondary-contrast-pressed: rgb(223 227 234);
+  --background-button-secondary-contrast-disabled: rgb(233 235 241);
+  --background-button-overlay: rgb(12 13 14 / 0.32);
+  --background-button-overlay-hovered: rgb(12 13 14 / 0.48);
+  --background-button-overlay-pressed: rgb(12 13 14 / 0.56);
+  --background-button-overlay-disabled: rgb(12 13 14 / 0.2);
   --background-accent-negative: rgb(255 48 60);
   --background-accent-neutral: rgb(13 13 13);
+  --background-accent-neutral-default: rgb(23 24 28);
   --background-accent-neutral-fade: rgb(9 9 9 / 0.08);
   --background-accent-neutral-fade-secondary: rgb(9 9 9 / 0.05);
   --background-accent-neutral-static: rgb(13 13 13);
@@ -39,6 +53,8 @@
   --background-local-top-bar-primary-i-os: rgb(255 255 255 / 0.84);
   --background-local-top-bar-secondary-android: rgb(237 238 242);
   --background-local-top-bar-secondary-i-os: rgb(237 238 242 / 0.84);
+  --background-mute: rgb(6 7 8 / 0.12);
+  --background-menu: rgb(137 140 140);
   --gradients-banner-dk-background-fantasy-step-1: rgb(142 133 255);
   --gradients-banner-dk-background-fantasy-step-2: rgb(78 4 236);
   --gradients-banner-dk-background-icon-container-step-1: rgb(255 255 255 / 0.2);
@@ -93,6 +109,7 @@
   --icon-secondary: rgb(81 84 85);
   --icon-tertiary: rgb(137 140 140);
   --icon-themed: rgb(0 122 255);
+  --promo-text-step-1: rgb(104 19 255);
   --shadow-android-tab-bar-default-color: rgb(0 0 0 / 0);
   --shadow-android-tab-bar-scroll-color: rgb(0 0 0 / 0.06);
   --shadow-android-top-bar-scroll-color: rgb(0 0 0 / 0.06);
@@ -128,7 +145,8 @@
   --states-background-disabled-themed: rgb(0 122 255 / 0.48);
   --states-background-hovered-card: rgb(246 246 246);
   --states-background-hovered-contrast-static: rgb(246 246 246);
-  --states-background-hovered-negative: rgb(255 75 85);
+  --states-background-hovered-negative: rgb(255 75 85); // legacy-алиас, каноничное имя ниже (upstream rename)
+  --states-background-hovered-destructive: rgb(255 75 85);
   --states-background-hovered-neutral: rgb(55 55 55);
   --states-background-hovered-neutral-fade: rgb(9 9 9 / 0.05);
   --states-background-hovered-neutral-themed: rgb(55 55 55);
@@ -213,6 +231,7 @@
   --text-neutral-themed: rgb(12 13 14);
   --text-positive: rgb(26 190 67);
   --text-primary: rgb(12 13 14);
+  --text-primary-inverse: rgb(255 255 255);
   --text-primary-static: rgb(12 13 14);
   --text-secondary: rgb(12 13 14 / 0.52);
   --text-subhead: rgb(12 13 14 / 0.72);
@@ -245,11 +264,25 @@
   --background-accent-contrast-static: rgb(255 255 255);
   --background-accent-contrast: rgb(13 13 13);
   --background-accent-contrast-secondary: rgb(30 30 30);
+  --background-accent-contrast-secondary-static: rgb(77 78 98);
+  --background-button-secondary: rgb(67 68 85);
+  --background-button-secondary-hovered: rgb(77 78 98);
+  --background-button-secondary-pressed: rgb(60 62 76);
+  --background-button-secondary-disabled: rgb(75 76 94);
+  --background-button-secondary-contrast: rgb(77 78 98);
+  --background-button-secondary-contrast-hovered: rgb(87 88 114);
+  --background-button-secondary-contrast-pressed: rgb(67 68 85);
+  --background-button-secondary-contrast-disabled: rgb(77 78 98);
+  --background-button-overlay: rgb(46 51 56 / 0.45);
+  --background-button-overlay-hovered: rgb(46 51 56 / 0.64);
+  --background-button-overlay-pressed: rgb(46 51 56 / 0.72);
+  --background-button-overlay-disabled: rgb(13 13 13 / 0.32);
   --background-accent-negative: rgb(206 66 87);
   --background-accent-neutral: rgb(255 255 255);
   --background-accent-neutral-fade: rgb(255 255 255 / 0.09);
   --background-accent-neutral-fade-secondary: rgb(255 255 255 / 0.09);
   --background-accent-neutral-static: rgb(23 24 28);
+  --background-accent-neutral-default: rgb(23 24 28);
   --background-accent-neutral-themed: rgb(0 122 255);
   --background-accent-positive: rgb(43 198 68);
   --background-accent-themed: rgb(0 122 255);
@@ -261,6 +294,8 @@
   --background-local-top-bar-primary-i-os: rgb(30 31 36 / 0.84);
   --background-local-top-bar-secondary-android: rgb(23 24 28);
   --background-local-top-bar-secondary-i-os: rgb(23 24 28 / 0.84);
+  --background-mute: rgb(6 7 8 / 0.12);
+  --background-menu: rgb(137 140 140);
   --gradients-banner-dk-background-fantasy-step-1: rgb(142 133 255);
   --gradients-banner-dk-background-fantasy-step-2: rgb(78 4 236);
   --gradients-banner-dk-background-icon-container-step-1: rgb(255 255 255 / 0.2);
@@ -315,6 +350,7 @@
   --icon-secondary: rgb(255 255 255 / 0.44);
   --icon-tertiary: rgb(255 255 255 / 0.28);
   --icon-themed: rgb(0 122 255);
+  --promo-text-step-1: rgb(104 19 255);
   --shadow-android-tab-bar-default-color: rgb(0 0 0 / 0.16);
   --shadow-android-tab-bar-scroll-color: rgb(0 0 0 / 0.16);
   --shadow-android-top-bar-scroll-color: rgb(0 0 0 / 0.16);
@@ -350,7 +386,8 @@
   --states-background-disabled-themed: rgb(255 255 255 / 0.12);
   --states-background-hovered-card: rgb(50 52 61);
   --states-background-hovered-contrast-static: rgb(246 246 246);
-  --states-background-hovered-negative: rgb(245 78 103);
+  --states-background-hovered-negative: rgb(245 78 103); // legacy-алиас, каноничное имя ниже (upstream rename)
+  --states-background-hovered-destructive: rgb(245 78 103);
   --states-background-hovered-neutral: rgb(228 228 228);
   --states-background-hovered-neutral-fade: rgb(231 231 231 / 0.15);
   --states-background-hovered-neutral-themed: rgb(71 159 255);
@@ -435,6 +472,7 @@
   --text-neutral-themed: rgb(0 122 255);
   --text-positive: rgb(43 198 68);
   --text-primary: rgb(255 255 255 / 0.8);
+  --text-primary-inverse: rgb(12 13 14);
   --text-primary-static: rgb(12 13 14);
   --text-secondary: rgb(255 255 255 / 0.44);
   --text-subhead: rgb(255 255 255 / 0.74);

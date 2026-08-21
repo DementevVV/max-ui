@@ -9,17 +9,28 @@ import { EllipsisText } from '../EllipsisText';
 import { Ripple } from '../Ripple';
 import { Spinner } from '../Spinner';
 import styles from './Button.module.scss';
-import { getButtonSpinnerAppearance, getButtonSpinnerSize, injectButtonIndicator } from './helpers';
+import { getButtonSpinnerAppearance, getButtonSpinnerSize, getButtonVariantSpinnerAppearance, injectButtonIndicator } from './helpers';
 
-export type ButtonSize = 'small' | 'medium' | 'large';
+export type ButtonSize = 'xsmall' | 'small' | 'medium' | 'large';
 export type ButtonMode = 'primary' | 'secondary' | 'tertiary' | 'link';
 export type ButtonAppearance = 'themed' | 'negative' | 'neutral' | 'neutral-themed' | 'contrast-static';
+export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'primary-contrast' | 'secondary-contrast' | 'overlay' | 'destructive';
 export type ButtonInnerElementKey = 'iconBefore' | 'iconAfter' | 'indicator' | 'content' | 'spinnerContainer' | 'spinner';
 
 export interface ButtonProps extends ComponentProps<'button'>, AsChildProp {
+  /**
+   * `xsmall` доступен только вместе с `variant` (в legacy-API трактуется как `small`)
+   */
   size?: ButtonSize
   mode?: ButtonMode
   appearance?: ButtonAppearance
+  /**
+   * Новый канонический API дизайн-системы MAX (семейство `Button/*` из Figma,
+   * значения и размеры соответствуют upstream `@maxhub/max-ui` 0.2.x).
+   * Если задан — `mode`/`appearance` игнорируются, размеры берутся из новой шкалы
+   * (xsmall 32 / small 40 / medium 52 / large 60).
+   */
+  variant?: ButtonVariant
   stretched?: boolean
   iconBefore?: ReactNode
   iconAfter?: ReactNode
@@ -44,6 +55,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, forward
     size = 'medium',
     mode = 'primary',
     appearance = 'themed',
+    variant,
     ...rest
   } = props;
 
@@ -53,7 +65,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, forward
   const platform = usePlatform();
   const buttonLikeProps = useButtonLikeProps({ asChild, children, disabled, rootElement, loading });
   const inactive = disabled || loading;
-  const withRipple = platform === 'android' && mode !== 'link';
+  const withVariant = variant != null;
+  const withRipple = platform === 'android' && (withVariant || mode !== 'link');
+  // в legacy-API нет xsmall-габаритов — не оставляем кнопку без размерного класса
+  const sizeClassKey = !withVariant && size === 'xsmall' ? 'small' : size;
 
   const clickHandler: MouseEventHandler<HTMLButtonElement> = (e) => {
     if (loading) return;
@@ -62,9 +77,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, forward
 
   const rootClassName = clsx(
     styles.Button,
-    styles[`Button_appearance_${appearance}`],
-    styles[`Button_mode_${mode}`],
-    styles[`Button_size_${size}`], {
+    withVariant
+      ? [styles.Button_withVariant, styles[`Button_variant_${variant}`]]
+      : [styles[`Button_appearance_${appearance}`], styles[`Button_mode_${mode}`]],
+    styles[`Button_size_${sizeClassKey}`], {
       [styles.Button_loading]: loading,
       [styles.Button_disabled]: disabled,
       [styles.Button_stretched]: stretched,
@@ -93,7 +109,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, forward
           <Spinner
             className={clsx(innerClassNames?.spinner)}
             size={getButtonSpinnerSize(size)}
-            appearance={getButtonSpinnerAppearance(appearance, mode)}
+            appearance={withVariant ? getButtonVariantSpinnerAppearance(variant) : getButtonSpinnerAppearance(appearance, mode)}
           />
         </span>
       )}
@@ -115,7 +131,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, forward
             indicator,
             appearance,
             mode,
-            disabled
+            disabled,
+            variant
           )}
         </span>
       )}

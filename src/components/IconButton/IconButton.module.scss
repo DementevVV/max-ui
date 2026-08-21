@@ -1,5 +1,6 @@
 @use '../../styles/shared-mixins/button-sizes';
 @use '../../styles/shared-mixins/button-appearances';
+@use '../../styles/shared-mixins/button-variants';
 @use '../../styles/shared-mixins/typography';
 @use '../../styles/shared-mixins/reset-clickable';
 
@@ -141,6 +142,48 @@
 }
 .IconButton_mode_link.IconButton_appearance_contrast-static {
   @include button-appearances.buttonLinkContrastStatic('IconButton', true);
+}
+
+// [Properties] Variants — новый API дизайн-системы (проп variant, семейство Button/* из Figma)
+.IconButton_variant_primary {
+  @include button-variants.buttonVariantPrimary('IconButton', true);
+}
+.IconButton_variant_secondary {
+  @include button-variants.buttonVariantSecondary('IconButton', true);
+}
+.IconButton_variant_ghost {
+  @include button-variants.buttonVariantGhost('IconButton', true);
+}
+.IconButton_variant_primary-contrast {
+  @include button-variants.buttonVariantPrimaryContrast('IconButton', true);
+}
+.IconButton_variant_secondary-contrast {
+  @include button-variants.buttonVariantSecondaryContrast('IconButton', true);
+}
+.IconButton_variant_overlay {
+  @include button-variants.buttonVariantOverlay('IconButton', true);
+}
+.IconButton_variant_destructive {
+  @include button-variants.buttonVariantDestructive('IconButton', true);
+}
+
+// [Properties] Размеры нового API — активны только вместе с variant,
+// чтобы legacy-кнопки (mode/appearance) не меняли габариты
+.IconButton_withVariant {
+  padding: 0;
+
+  &.IconButton_size_xsmall {
+    @include button-sizes.iconButtonVariantXSmallSize;
+  }
+  &.IconButton_size_small {
+    @include button-sizes.iconButtonVariantSmallSize;
+  }
+  &.IconButton_size_medium {
+    @include button-sizes.iconButtonVariantMediumSize;
+  }
+  &.IconButton_size_large {
+    @include button-sizes.iconButtonVariantLargeSize;
+  }
 }
 
 // [Parts] Spinner container
