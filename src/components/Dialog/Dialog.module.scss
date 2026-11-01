@@ -1,0 +1,103 @@
+// Якорь в месте рендера: по нему находим корень MaxUI для портала
+.host {
+  display: none;
+}
+
+.Dialog__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-size2xl);
+  background-color: var(--background-overlay);
+  overscroll-behavior: contain;
+  animation: DialogFadeIn 0.2s ease;
+  transition: opacity 0.2s ease;
+}
+
+.Dialog__overlay_exiting {
+  opacity: 0;
+}
+
+.Dialog {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 320px;
+  max-height: 100%;
+  box-sizing: border-box;
+  padding: var(--spacing-size4xl) var(--spacing-size3xl) var(--spacing-size3xl);
+  overflow-y: auto;
+  background-color: var(--background-card);
+  border-radius: 20px;
+  color: var(--text-primary);
+  text-align: center;
+  animation: DialogScaleIn 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+
+  // Фокус ставится программно при открытии — контур вокруг всего окна не нужен
+  &:focus {
+    outline: none;
+  }
+}
+
+.Dialog_exiting {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+.Dialog__title {
+  display: block;
+}
+
+.Dialog__description {
+  display: block;
+  margin-top: var(--spacing-size-m);
+}
+
+.Dialog__body {
+  margin-top: var(--spacing-size2xl);
+  text-align: start;
+}
+
+.Dialog__actions {
+  display: flex;
+  gap: var(--spacing-size-m);
+  margin-top: var(--spacing-size4xl);
+
+  &_vertical {
+    flex-direction: column;
+  }
+
+  &_horizontal {
+    flex-direction: row;
+
+    > * {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+}
+
+@keyframes DialogFadeIn {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes DialogScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .Dialog__overlay,
+  .Dialog {
+    animation: none;
+    transition: none;
+  }
+}

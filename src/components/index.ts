@@ -10,6 +10,7 @@ export * from './Checkbox';
 export * from './Container';
 export * from './ContextMenu';
 export * from './Counter';
+export * from './Dialog';
 export * from './Dot';
 export * from './Dropdown';
 export * from './EllipsisText';
