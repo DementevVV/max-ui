@@ -19,7 +19,8 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     ".storybook/**/*.ts",
-    "rollup.config.js"
+    "rollup.config.js",
+    "vitest.config.ts"
   ],
   "exclude": ["dist"]
 }

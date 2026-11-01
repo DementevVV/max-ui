@@ -5,6 +5,8 @@
   },
   "include": ["src/**/*.ts*"],
   "exclude": [
-    "src/**/*.stories.ts*"
+    "src/**/*.stories.ts*",
+    "src/**/*.test.ts*",
+    "src/test/**"
   ]
 }
