@@ -23,3 +23,10 @@ if (typeof window.matchMedia !== 'function') {
     })
   });
 }
+
+// jsdom не реализует pointer capture (нужен для перетаскивания BottomSheet)
+if (typeof Element.prototype.setPointerCapture !== 'function') {
+  Element.prototype.setPointerCapture = () => {};
+  Element.prototype.releasePointerCapture = () => {};
+  Element.prototype.hasPointerCapture = () => false;
+}

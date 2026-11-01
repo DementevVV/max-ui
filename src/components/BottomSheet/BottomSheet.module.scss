@@ -1,0 +1,121 @@
+// Якорь в месте рендера: по нему находим корень MaxUI для портала
+.host {
+  display: none;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  overscroll-behavior: contain;
+  animation: fadeIn 0.25s ease;
+}
+
+.overlayClosing {
+  animation: fadeOut 0.25s ease forwards;
+}
+
+.sheet {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  max-height: 90%;
+  padding: 12px 16px 20px;
+  background-color: var(--background-surface-secondary, #fff);
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.12);
+  will-change: transform;
+  animation: slideUp 0.25s ease;
+  transition: transform 0.25s ease;
+  &_dragging {
+    transition: none;
+    animation: none;
+  }
+  &_exiting {
+    animation: none;
+  }
+}
+
+.handle {
+  width: 36px;
+  height: 4px;
+  margin: 0 auto 4px;
+  padding: 8px 0;
+  border-radius: 2px;
+  background-color: var(--border-primary, rgba(0, 0, 0, 0.15));
+  background-clip: content-box;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  box-sizing: content-box;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  //color: var(--text-primary-inverse);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+// Фокус на шторку ставится программно при открытии — контур вокруг всей шторки не нужен
+.sheet:focus {
+  outline: none;
+}
+
+.handle:focus-visible {
+  outline: 2px solid var(--icon-themed);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .overlayClosing,
+  .sheet {
+    animation: none;
+    transition: none;
+  }
+}
