@@ -3,6 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import {
   Avatar,
+  BottomSheet,
   Button,
   CellAction,
   CellHeader,
@@ -11,7 +12,9 @@ import {
   CellSimple,
   Checkbox,
   Container,
+  ContextMenu,
   Counter,
+  Dialog,
   Dot,
   Dropdown,
   EllipsisText,
@@ -25,8 +28,11 @@ import {
   RadioButton,
   RadioGroup,
   SearchInput,
+  Select,
   Separator,
   Spinner,
+  StatusBadge,
+  Steps,
   SvgButton,
   Switch,
   Tabs,
@@ -37,6 +43,7 @@ import {
   Toast,
   ToastProvider,
   ToolButton,
+  Tooltip,
   Typography
 } from '../index';
 import { type PlatformType } from '../types';
@@ -62,6 +69,15 @@ const cases: Array<[string, () => ReactElement]> = [
       />
     </Avatar.Container>
   )],
+  ['BottomSheet', () => (
+    <BottomSheet
+      open
+      title="Шторка"
+      onClose={() => {}}
+    >
+      Контент
+    </BottomSheet>
+  )],
   ['Button (legacy)', () => <Button>Button</Button>],
   ['Button (variant)', () => <Button variant="secondary" size="xsmall">Button</Button>],
   ['Button (loading)', () => <Button loading>Button</Button>],
@@ -81,7 +97,21 @@ const cases: Array<[string, () => ReactElement]> = [
   )],
   ['Checkbox', () => <Checkbox>Label</Checkbox>],
   ['Container', () => <Container>Content</Container>],
+  ['ContextMenu', () => (
+    <ContextMenu items={[{ id: 'a', label: 'A' }]}>
+      <Button>Меню</Button>
+    </ContextMenu>
+  )],
   ['Counter', () => <Counter value={1234} rounded />],
+  ['Dialog', () => (
+    <Dialog
+      open
+      title="Удалить?"
+      description="Нельзя отменить"
+      onClose={() => {}}
+      actions={<Button>Ок</Button>}
+    />
+  )],
   ['Dot', () => <Dot aria-label="dot" />],
   ['Dropdown', () => (
     <Dropdown
@@ -115,10 +145,21 @@ const cases: Array<[string, () => ReactElement]> = [
     </RadioGroup>
   )],
   ['SearchInput', () => <SearchInput placeholder="Search" />],
+  ['Select', () => (
+    <Select
+      options={[{ value: 'a', label: 'A' }]}
+      defaultValue="a"
+      aria-label="select"
+      hint="hint"
+    />
+  )],
   ['Separator', () => <Separator />],
   ['Spinner', () => <Spinner appearance="themed" />],
   ['SvgButton', () => <SvgButton aria-label="svg"><Icon16Chevron /></SvgButton>],
   ['Switch', () => <Switch aria-label="switch" />],
+  ['StatusBadge', () => <StatusBadge text="Оплачено" status="positive" />],
+  ['Steps', () => <Steps count={3} progress={1} />],
+  ['Tooltip', () => <Tooltip label="Комиссия" text="1%" />],
   ['Tabs', () => (
     <Tabs defaultValue="a" aria-label="tabs">
       <TabsItem value="a" label="A" />
