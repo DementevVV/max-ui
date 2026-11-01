@@ -22,6 +22,11 @@ export interface DropdownProps extends ComponentProps<'select'> {
   innerClassNames?: InnerClassNamesProp<DropdownElementKey>;
 }
 
+/**
+ * @deprecated Используйте `Select`: поиск, множественный выбор, кастомные строки опций,
+ * доступность (listbox, клавиатура) и единый вид на iOS/Android.
+ * Dropdown сохранён для обратной совместимости и будет удалён в 1.0.
+ */
 export const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
   (props, forwardedRef) => {
     const {

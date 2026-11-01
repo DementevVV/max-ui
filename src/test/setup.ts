@@ -30,3 +30,8 @@ if (typeof Element.prototype.setPointerCapture !== 'function') {
   Element.prototype.releasePointerCapture = () => {};
   Element.prototype.hasPointerCapture = () => false;
 }
+
+// jsdom не реализует scrollIntoView (Select прокручивает к подсвеченной опции)
+if (typeof Element.prototype.scrollIntoView !== 'function') {
+  Element.prototype.scrollIntoView = () => {};
+}

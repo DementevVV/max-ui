@@ -22,6 +22,7 @@ export * from './Panel';
 export * from './RadioGroup';
 export * from './Ripple';
 export * from './SearchInput';
+export * from './Select';
 export * from './Separator';
 export * from './Spinner';
 export * from './StatusBadge';
