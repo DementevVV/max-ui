@@ -3,6 +3,7 @@ import { clsx } from 'clsx';
 import {
   type AllHTMLAttributes, type ElementType,
   forwardRef,
+  type MouseEvent,
   type ReactNode
 } from 'react';
 
@@ -19,6 +20,10 @@ type TappableOwnProps = {
 
 export type TappableProps = MergeProps<AllHTMLAttributes<HTMLElement>, TappableOwnProps>;
 
+const preventInactiveClick = (event: MouseEvent<HTMLElement>): void => {
+  event.preventDefault();
+};
+
 export const Tappable = forwardRef<HTMLElement, TappableProps>((props, forwardedRef) => {
   const {
     className,
@@ -28,6 +33,7 @@ export const Tappable = forwardRef<HTMLElement, TappableProps>((props, forwarded
     // исключаем parentChildren из ...rest, чтобы проп не попал в DOM
     parentChildren: _parentChildren,
     as = 'div',
+    onClick,
     ...rest
   } = props;
 
@@ -55,6 +61,9 @@ export const Tappable = forwardRef<HTMLElement, TappableProps>((props, forwarded
       className={rootClassName}
       {...(hasAction ? buttonLikeProps : {})}
       {...rest}
+      // onClick ставится после ...rest: неактивный элемент не должен вызывать обработчик
+      // (у div/ссылки атрибут disabled клики не блокирует)
+      onClick={disabled ? preventInactiveClick : onClick}
     >
       {children}
 

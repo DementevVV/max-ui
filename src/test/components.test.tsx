@@ -2,7 +2,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 
-import { Checkbox, Input, RadioButton, RadioGroup, Spinner, Typography } from '../index';
+import { CellAction, CellSimple, Checkbox, Input, RadioButton, RadioGroup, Spinner, Typography } from '../index';
 import { renderWithMaxUI } from './render';
 
 describe('Spinner', () => {
@@ -107,5 +107,42 @@ describe('Typography.Text', () => {
     renderWithMaxUI(<Typography.Text>Текст</Typography.Text>);
 
     expect(screen.getByText('Текст')).toHaveClass('TypographyText_variant_body', 'TypographyText_color_inherit');
+  });
+});
+
+describe('Tappable (через CellSimple/CellAction)', () => {
+  it('неактивная ячейка не вызывает onClick ни кликом, ни с клавиатуры', async () => {
+    const onClick = vi.fn();
+    renderWithMaxUI(<CellSimple title="Удалить аккаунт" disabled onClick={onClick} />);
+
+    const cell = screen.getByRole('button', { name: 'Удалить аккаунт' });
+    fireEvent.click(cell);
+    fireEvent.keyDown(cell, { key: 'Enter' });
+
+    expect(onClick).not.toHaveBeenCalled();
+    expect(cell).toHaveAttribute('aria-disabled', 'true');
+  });
+
+  it('активная ячейка срабатывает кликом и с клавиатуры', async () => {
+    const onClick = vi.fn();
+    const user = userEvent.setup();
+    renderWithMaxUI(<CellSimple title="Настройки" onClick={onClick} />);
+
+    const cell = screen.getByRole('button', { name: 'Настройки' });
+    await user.click(cell);
+    cell.focus();
+    await user.keyboard('{Enter}');
+
+    expect(onClick).toHaveBeenCalledTimes(2);
+  });
+
+  it('неактивная кнопка-ячейка CellAction не вызывает onClick', async () => {
+    const onClick = vi.fn();
+    const user = userEvent.setup();
+    renderWithMaxUI(<CellAction disabled onClick={onClick}>Выйти</CellAction>);
+
+    await user.click(screen.getByRole('button', { name: 'Выйти' }));
+
+    expect(onClick).not.toHaveBeenCalled();
   });
 });
