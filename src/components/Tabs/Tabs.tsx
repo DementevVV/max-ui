@@ -1,8 +1,10 @@
 import { clsx } from 'clsx';
 import {
+  Children,
   type ComponentProps,
   createContext,
   forwardRef,
+  isValidElement,
   type KeyboardEvent,
   type ReactNode,
   useContext,
@@ -313,6 +315,12 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     className
   );
 
+  // TabsContent — панели, а не вкладки: им нельзя находиться внутри role="tablist",
+  // но им нужен контекст Tabs. Поэтому рендерим их соседями tablist внутри провайдера
+  const childArray = Children.toArray(children);
+  const panels = childArray.filter((child) => isValidElement(child) && child.type === TabsContent);
+  const tabs = childArray.filter((child) => !(isValidElement(child) && child.type === TabsContent));
+
   return (
     <TabsContext.Provider value={contextValue}>
       <div
@@ -329,8 +337,9 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
         onKeyDown={handleKeyDown}
         {...rest}
       >
-        {children}
+        {tabs}
       </div>
+      {panels}
     </TabsContext.Provider>
   );
 });

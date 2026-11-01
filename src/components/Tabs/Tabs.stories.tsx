@@ -815,11 +815,11 @@ export const ValueBasedWithContent: Story = {
             label="Профиль"
             icon={<Icon24Placeholder />}
           />
-        </Tabs>
 
-        <TabsContent value="feed">Контент вкладки «Лента»</TabsContent>
-        <TabsContent value="messages">Контент вкладки «Сообщения»</TabsContent>
-        <TabsContent value="profile">Контент вкладки «Профиль»</TabsContent>
+          <TabsContent value="feed">Контент вкладки «Лента»</TabsContent>
+          <TabsContent value="messages">Контент вкладки «Сообщения»</TabsContent>
+          <TabsContent value="profile">Контент вкладки «Профиль»</TabsContent>
+        </Tabs>
       </>
     );
   }
