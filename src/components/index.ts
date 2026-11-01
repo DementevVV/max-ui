@@ -8,6 +8,7 @@ export * from './CellList';
 export * from './CellSimple';
 export * from './Checkbox';
 export * from './Container';
+export * from './ContextMenu';
 export * from './Counter';
 export * from './Dot';
 export * from './Dropdown';
