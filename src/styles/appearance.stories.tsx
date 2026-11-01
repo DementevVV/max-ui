@@ -11,39 +11,135 @@ const checkerboard: CSSProperties = {
   backgroundPosition: '0 0, 0 3px, 3px -3px, -3px 0'
 };
 
-type PaletteGroupName = 'Accent' | 'Background' | 'Gradients' | 'Icon' | 'Promo' | 'Shadow' | 'States' | 'Stroke' | 'Text';
+type PaletteGroupName = 'Background' | 'Text' | 'Icon' | 'Button' | 'Controls' | 'Counter' | 'Divider' | 'Promo' | 'States' | 'Gradients' | 'Legacy';
 
-// Список сгенерирован из src/styles/variables/appearance.scss (уникальные имена переменных).
-// При изменении палитры перегенерировать: grep -oE '\-\-[a-z0-9-]+' src/styles/variables/appearance.scss | sort -u
+// Список сгенерирован из src/styles/variables/appearance.scss: актуальная палитра по группам,
+// а в Legacy — устаревшие имена (алиасы и токены без аналога), которые будут удалены в 1.0.
 const palette: Record<PaletteGroupName, string[]> = {
-  Accent: [
-    '--accent-red',
-    '--accent-secondary',
-    '--accent-themed'
-  ],
   Background: [
-    '--background-contrast-floating-android',
-    '--background-contrast-floating-secondary-android',
-    '--background-contrast-floating-secondary-i-os',
-    '--background-contrast-floating-i-os',
-    '--background-neutral-floating-android',
-    '--background-neutral-floating-i-os',
+    '--background-surface',
+    '--background-primary',
+    '--background-secondary',
+    '--background-tertiary',
+    '--background-card',
     '--background-overlay',
     '--background-overlay-secondary',
-    '--background-overlay-static',
+    '--background-surface-secondary',
+    '--background-accent-neutral-fade-secondary'
+  ],
+  Text: [
+    '--text-primary',
+    '--text-secondary',
+    '--text-tertiary',
+    '--text-primary-static',
+    '--text-primary-inverse',
+    '--text-primary-inverse-static',
+    '--text-themed',
+    '--text-negative',
+    '--text-positive',
+    '--text-attention'
+  ],
+  Icon: [
+    '--icon-primary',
+    '--icon-tertiary',
+    '--icon-mute',
+    '--icon-primary-static',
+    '--icon-primary-inverse',
+    '--icon-primary-inverse-static',
+    '--icon-themed',
+    '--icon-positive',
+    '--icon-negative',
+    '--icon-quaternary'
+  ],
+  Button: [
+    '--button-primary',
+    '--button-secondary',
+    '--button-primary-contrast',
+    '--button-secondary-contrast',
+    '--button-negative',
+    '--button-ghost',
+    '--button-overlay'
+  ],
+  Controls: [
+    '--controls-active',
+    '--controls-inactive',
+    '--controls-key'
+  ],
+  Counter: [
+    '--counter-attention',
+    '--counter-mute',
+    '--counter-themed',
+    '--counter-default',
+    '--counter-mirage',
+    '--counter-contrast',
+    '--counter-menu'
+  ],
+  Divider: [
+    '--divider-primary',
+    '--divider-secondary'
+  ],
+  Promo: [
+    '--promo-text-step-1'
+  ],
+  States: [
+    '--states-background-card-disabled',
+    '--states-icon-primary-disabled',
+    '--states-icon-tertiary-hover',
+    '--states-button-primary-hover',
+    '--states-button-primary-pressed',
+    '--states-button-primary-disabled',
+    '--states-button-secondary-hover',
+    '--states-button-secondary-pressed',
+    '--states-button-secondary-disabled',
+    '--states-button-primary-contrast-hover',
+    '--states-button-primary-contrast-pressed',
+    '--states-button-primary-contrast-disabled',
+    '--states-button-secondary-contrast-hover',
+    '--states-button-secondary-contrast-pressed',
+    '--states-button-secondary-contrast-disabled',
+    '--states-button-negative-hover',
+    '--states-button-negative-pressed',
+    '--states-button-negative-disabled',
+    '--states-button-ghost-hover',
+    '--states-button-ghost-pressed',
+    '--states-button-overlay-hover',
+    '--states-button-overlay-pressed',
+    '--states-button-overlay-disabled',
+    '--states-text-primary-disabled',
+    '--states-text-secondary-disabled',
+    '--states-text-tertiary-disabled',
+    '--states-text-primary-static-disabled',
+    '--states-text-primary-inverse-static-disabled',
+    '--states-text-themed-disabled',
+    '--states-text-negative-disabled',
+    '--states-controls-active-disabled',
+    '--states-controls-inactive-disabled',
+    '--states-counter-contrast-disabled',
+    '--states-counter-default-disabled',
+    '--states-background-hovered-transparent',
+    '--states-background-pressed-transparent',
+    '--states-background-disabled-neutral-fade'
+  ],
+  Gradients: [
+    '--gradients-loading-icon-contrast-filled',
+    '--gradients-loading-icon-contrast-transparent',
+    '--gradients-loading-icon-contrast-static-filled',
+    '--gradients-loading-icon-contrast-static-transparent',
+    '--gradients-loading-icon-negative-filled',
+    '--gradients-loading-icon-negative-transparent',
+    '--gradients-loading-icon-neutral-themed-filled',
+    '--gradients-loading-icon-neutral-themed-transparent',
+    '--gradients-loading-icon-primary-filled',
+    '--gradients-loading-icon-primary-transparent',
+    '--gradients-loading-icon-primary-static-filled',
+    '--gradients-loading-icon-primary-static-transparent',
+    '--gradients-loading-icon-themed-filled',
+    '--gradients-loading-icon-themed-transparent'
+  ],
+  Legacy: [
     '--background-surface-card',
-    '--background-surface-floating',
     '--background-surface-ground',
     '--background-surface-primary',
-    '--background-surface-secondary',
-    '--background-surface-tertiary',
-    '--background-transparent',
-    '--background-accent-attention-primary',
-    '--background-accent-attention-secondary',
-    '--background-accent-contrast-static',
-    '--background-accent-contrast',
-    '--background-accent-contrast-secondary',
-    '--background-accent-contrast-secondary-static',
     '--background-button-secondary',
     '--background-button-secondary-hovered',
     '--background-button-secondary-pressed',
@@ -56,11 +152,43 @@ const palette: Record<PaletteGroupName, string[]> = {
     '--background-button-overlay-hovered',
     '--background-button-overlay-pressed',
     '--background-button-overlay-disabled',
+    '--background-accent-neutral-default',
+    '--background-mute',
+    '--background-menu',
+    '--icon-contrast-static',
+    '--states-background-disabled-card',
+    '--states-icon-disabled-primary',
+    '--states-icon-hovered-tertiary',
+    '--states-text-disabled-contrast-static',
+    '--states-text-disabled-negative',
+    '--states-text-disabled-primary',
+    '--states-text-disabled-primary-static',
+    '--states-text-disabled-themed',
+    '--stroke-separator-primary',
+    '--stroke-separator-secondary',
+    '--text-contrast-static',
+    '--accent-red',
+    '--accent-secondary',
+    '--accent-themed',
+    '--background-contrast-floating-android',
+    '--background-contrast-floating-secondary-android',
+    '--background-contrast-floating-secondary-i-os',
+    '--background-contrast-floating-i-os',
+    '--background-neutral-floating-android',
+    '--background-neutral-floating-i-os',
+    '--background-overlay-static',
+    '--background-surface-floating',
+    '--background-surface-tertiary',
+    '--background-transparent',
+    '--background-accent-attention-primary',
+    '--background-accent-attention-secondary',
+    '--background-accent-contrast-static',
+    '--background-accent-contrast',
+    '--background-accent-contrast-secondary',
+    '--background-accent-contrast-secondary-static',
     '--background-accent-negative',
     '--background-accent-neutral',
-    '--background-accent-neutral-default',
     '--background-accent-neutral-fade',
-    '--background-accent-neutral-fade-secondary',
     '--background-accent-neutral-static',
     '--background-accent-neutral-themed',
     '--background-accent-positive',
@@ -73,10 +201,6 @@ const palette: Record<PaletteGroupName, string[]> = {
     '--background-local-top-bar-primary-i-os',
     '--background-local-top-bar-secondary-android',
     '--background-local-top-bar-secondary-i-os',
-    '--background-mute',
-    '--background-menu'
-  ],
-  Gradients: [
     '--gradients-banner-dk-background-fantasy-step-1',
     '--gradients-banner-dk-background-fantasy-step-2',
     '--gradients-banner-dk-background-icon-container-step-1',
@@ -106,38 +230,9 @@ const palette: Record<PaletteGroupName, string[]> = {
     '--gradients-empty-block-icon-wrapper-stroke-step-1',
     '--gradients-empty-block-icon-wrapper-stroke-step-2',
     '--gradients-empty-block-icon-wrapper-stroke-step-3',
-    '--gradients-loading-icon-contrast-filled',
-    '--gradients-loading-icon-contrast-transparent',
-    '--gradients-loading-icon-contrast-static-filled',
-    '--gradients-loading-icon-contrast-static-transparent',
-    '--gradients-loading-icon-negative-filled',
-    '--gradients-loading-icon-negative-transparent',
-    '--gradients-loading-icon-neutral-themed-filled',
-    '--gradients-loading-icon-neutral-themed-transparent',
-    '--gradients-loading-icon-primary-filled',
-    '--gradients-loading-icon-primary-transparent',
-    '--gradients-loading-icon-primary-static-filled',
-    '--gradients-loading-icon-primary-static-transparent',
-    '--gradients-loading-icon-themed-filled',
-    '--gradients-loading-icon-themed-transparent'
-  ],
-  Icon: [
     '--icon-contrast',
-    '--icon-contrast-static',
-    '--icon-negative',
     '--icon-neutral-themed',
-    '--icon-positive',
-    '--icon-primary',
-    '--icon-primary-static',
-    '--icon-quaternary',
     '--icon-secondary',
-    '--icon-tertiary',
-    '--icon-themed'
-  ],
-  Promo: [
-    '--promo-text-step-1'
-  ],
-  Shadow: [
     '--shadow-android-tab-bar-default-color',
     '--shadow-android-tab-bar-scroll-color',
     '--shadow-android-top-bar-scroll-color',
@@ -149,9 +244,7 @@ const palette: Record<PaletteGroupName, string[]> = {
     '--shadow-elevation-3-secondary',
     '--shadow-elevation-4-primary',
     '--shadow-elevation-4-secondary',
-    '--shadow-tabbar-color'
-  ],
-  States: [
+    '--shadow-tabbar-color',
     '--states-background-active-contrast-static',
     '--states-background-active-negative',
     '--states-background-active-neutral',
@@ -161,12 +254,10 @@ const palette: Record<PaletteGroupName, string[]> = {
     '--states-background-active-themed',
     '--states-background-active-transparent',
     '--states-background-active-transparent-secondary-static',
-    '--states-background-disabled-card',
     '--states-background-disabled-contrast',
     '--states-background-disabled-contrast-static',
     '--states-background-disabled-negative',
     '--states-background-disabled-neutral',
-    '--states-background-disabled-neutral-fade',
     '--states-background-disabled-neutral-static',
     '--states-background-disabled-neutral-themed',
     '--states-background-disabled-overlay-static',
@@ -182,7 +273,6 @@ const palette: Record<PaletteGroupName, string[]> = {
     '--states-background-hovered-neutral-themed',
     '--states-background-hovered-positive',
     '--states-background-hovered-themed',
-    '--states-background-hovered-transparent',
     '--states-background-hovered-transparent-select',
     '--states-background-pressed-card',
     '--states-background-pressed-contrast-static',
@@ -192,14 +282,12 @@ const palette: Record<PaletteGroupName, string[]> = {
     '--states-background-pressed-neutral-themed',
     '--states-background-pressed-positive',
     '--states-background-pressed-themed',
-    '--states-background-pressed-transparent',
     '--states-background-pressed-transparent-select',
     '--states-icon-disabled-contrast',
     '--states-icon-disabled-contrast-static',
     '--states-icon-disabled-negative',
     '--states-icon-disabled-neutral-themed',
     '--states-icon-disabled-positive',
-    '--states-icon-disabled-primary',
     '--states-icon-disabled-primary-static',
     '--states-icon-disabled-themed',
     '--states-icon-hovered-contrast-static',
@@ -207,7 +295,6 @@ const palette: Record<PaletteGroupName, string[]> = {
     '--states-icon-hovered-neutral-themed',
     '--states-icon-hovered-primary',
     '--states-icon-hovered-remove-attach',
-    '--states-icon-hovered-tertiary',
     '--states-icon-hovered-themed',
     '--states-icon-pressed-contrast-static',
     '--states-icon-pressed-negative',
@@ -222,12 +309,7 @@ const palette: Record<PaletteGroupName, string[]> = {
     '--states-text-active-primary',
     '--states-text-active-themed',
     '--states-text-disabled-contrast',
-    '--states-text-disabled-contrast-static',
-    '--states-text-disabled-negative',
     '--states-text-disabled-neutral-themed',
-    '--states-text-disabled-primary',
-    '--states-text-disabled-primary-static',
-    '--states-text-disabled-themed',
     '--states-text-hovered-contrast-static',
     '--states-text-hovered-negative',
     '--states-text-hovered-neutral-themed',
@@ -239,9 +321,7 @@ const palette: Record<PaletteGroupName, string[]> = {
     '--states-text-pressed-neutral-themed',
     '--states-text-pressed-primary',
     '--states-text-pressed-secondary',
-    '--states-text-pressed-themed'
-  ],
-  Stroke: [
+    '--states-text-pressed-themed',
     '--stroke-contrast-secondary-static',
     '--stroke-contrast-static',
     '--stroke-negative',
@@ -255,22 +335,9 @@ const palette: Record<PaletteGroupName, string[]> = {
     '--stroke-local-top-bar-android',
     '--stroke-local-top-bar-i-os',
     '--stroke-separator-contrast',
-    '--stroke-separator-primary',
-    '--stroke-separator-secondary'
-  ],
-  Text: [
     '--text-contrast',
-    '--text-contrast-static',
-    '--text-negative',
     '--text-neutral-themed',
-    '--text-positive',
-    '--text-primary',
-    '--text-primary-inverse',
-    '--text-primary-static',
-    '--text-secondary',
-    '--text-subhead',
-    '--text-tertiary',
-    '--text-themed'
+    '--text-subhead'
   ]
 };
 
@@ -323,30 +390,36 @@ const PaletteGroup = ({ title, variables }: PaletteGroupProps): ReactElement => 
   </section>
 );
 
-export const AccentPalette: Story = {
-  render: () => (<PaletteGroup variables={palette.Accent} title='Accent' />)
-};
 export const BackgroundPalette: Story = {
   render: () => (<PaletteGroup variables={palette.Background} title='Background' />)
 };
-export const GradientsPalette: Story = {
-  render: () => (<PaletteGroup variables={palette.Gradients} title='Gradients' />)
+export const TextPalette: Story = {
+  render: () => (<PaletteGroup variables={palette.Text} title='Text' />)
 };
 export const IconPalette: Story = {
   render: () => (<PaletteGroup variables={palette.Icon} title='Icon' />)
 };
+export const ButtonPalette: Story = {
+  render: () => (<PaletteGroup variables={palette.Button} title='Button' />)
+};
+export const ControlsPalette: Story = {
+  render: () => (<PaletteGroup variables={palette.Controls} title='Controls' />)
+};
+export const CounterPalette: Story = {
+  render: () => (<PaletteGroup variables={palette.Counter} title='Counter' />)
+};
+export const DividerPalette: Story = {
+  render: () => (<PaletteGroup variables={palette.Divider} title='Divider' />)
+};
 export const PromoPalette: Story = {
   render: () => (<PaletteGroup variables={palette.Promo} title='Promo' />)
-};
-export const ShadowPalette: Story = {
-  render: () => (<PaletteGroup variables={palette.Shadow} title='Shadow' />)
 };
 export const StatesPalette: Story = {
   render: () => (<PaletteGroup variables={palette.States} title='States' />)
 };
-export const StrokePalette: Story = {
-  render: () => (<PaletteGroup variables={palette.Stroke} title='Stroke' />)
+export const GradientsPalette: Story = {
+  render: () => (<PaletteGroup variables={palette.Gradients} title='Gradients' />)
 };
-export const TextPalette: Story = {
-  render: () => (<PaletteGroup variables={palette.Text} title='Text' />)
+export const LegacyPalette: Story = {
+  render: () => (<PaletteGroup variables={palette.Legacy} title='Legacy' />)
 };
