@@ -1,0 +1,105 @@
+// Миксины шкалы типографики дизайн-системы MAX. Имена совпадают со стилями Figma:
+// Hero, Header, Subheader, Title, Body, Detail, Description, Label, Tag, Note, Action.
+// Отдельный модуль, чтобы не пересекаться с прежними миксинами из typography.scss
+// (например, actionLarge там 17/22, а здесь — 17/20 по новой шкале).
+
+@mixin style($family, $size, $line-height, $letter-spacing, $weight) {
+  font-family: var(#{$family});
+  font-size: var(#{$size});
+  font-style: normal;
+  font-weight: var(#{$weight});
+  line-height: var(#{$line-height});
+  letter-spacing: var(#{$letter-spacing});
+}
+
+@mixin hero {
+  @include style(--family-headers, --font-size-hero, --line-height-hero, --letter-spacing-hero, --font-weight-hero);
+}
+
+@mixin header {
+  @include style(--family-headers, --font-size-header, --line-height-header, --letter-spacing-header, --font-weight-header);
+}
+
+@mixin subheader {
+  @include style(--family-headers, --font-size-subheader, --line-height-subheader, --letter-spacing-subheader, --font-weight-subheader);
+}
+
+@mixin title {
+  @include style(--family-headers, --font-size-title, --line-height-title, --letter-spacing-title, --font-weight-title);
+}
+
+@mixin body {
+  @include style(--family-base, --font-size-body, --line-height-body, --letter-spacing-body, --font-weight-body);
+}
+
+@mixin bodyStrong {
+  @include style(--family-base, --font-size-body, --line-height-body, --letter-spacing-body, --font-weight-body-strong);
+}
+
+@mixin detail {
+  @include style(--family-base, --font-size-detail, --line-height-detail, --letter-spacing-detail, --font-weight-detail);
+}
+
+@mixin detailStrong {
+  @include style(--family-base, --font-size-detail, --line-height-detail, --letter-spacing-detail, --font-weight-detail-strong);
+}
+
+@mixin description {
+  @include style(--family-base, --font-size-description, --line-height-description, --letter-spacing-description, --font-weight-description);
+}
+
+@mixin descriptionStrong {
+  @include style(--family-base, --font-size-description, --line-height-description, --letter-spacing-description, --font-weight-description-strong);
+}
+
+@mixin label {
+  @include style(--family-base, --font-size-label, --line-height-label, --letter-spacing-label, --font-weight-label);
+}
+
+@mixin labelStrong {
+  @include style(--family-base, --font-size-label, --line-height-label, --letter-spacing-label, --font-weight-label-strong);
+}
+
+@mixin cellLabelStrongSmallCaps {
+  @include style(
+    --family-base,
+    --font-size-cell-label-strong-small-caps,
+    --line-height-cell-label-strong-small-caps,
+    --letter-spacing-cell-label-strong-small-caps,
+    --font-weight-cell-label-strong-small-caps
+  );
+
+  text-transform: uppercase;
+}
+
+@mixin tag {
+  @include style(--family-base, --font-size-tag, --line-height-tag, --letter-spacing-tag, --font-weight-tag);
+}
+
+@mixin tagStrong {
+  @include style(--family-base, --font-size-tag, --line-height-tag, --letter-spacing-tag, --font-weight-tag-strong);
+}
+
+@mixin note {
+  @include style(--family-base, --font-size-note, --line-height-note, --letter-spacing-note, --font-weight-note);
+}
+
+@mixin noteStrong {
+  @include style(--family-base, --font-size-note, --line-height-note, --letter-spacing-note, --font-weight-note-strong);
+}
+
+@mixin actionLarge {
+  @include style(--family-base, --font-size-action-large, --line-height-action-large, --letter-spacing-action-large, --font-weight-action-large);
+}
+
+@mixin actionMedium {
+  @include style(--family-base, --font-size-action-medium, --line-height-action-medium, --letter-spacing-action-medium, --font-weight-action-medium);
+}
+
+@mixin actionSmall {
+  @include style(--family-base, --font-size-action-small, --line-height-action-small, --letter-spacing-action-small, --font-weight-action-small);
+}
+
+@mixin actionXSmall {
+  @include style(--family-base, --font-size-action-xsmall, --line-height-action-xsmall, --letter-spacing-action-xsmall, --font-weight-action-xsmall);
+}

@@ -78,6 +78,45 @@ const App = () => {
 
 ---
 
+## Типографика: стили Figma → код
+
+Для текстовых стилей из макета дизайн-системы MAX используйте `Typography.Text` — имена вариантов совпадают с именами стилей Figma:
+
+```tsx
+<Typography.Text variant="tag-strong" color="secondary">Новое</Typography.Text>
+```
+
+| Стиль в Figma | `variant` | Размер / интерлиньяж / вес |
+| --- | --- | --- |
+| Hero | `hero` | 28 / 32 / 600 |
+| Header | `header` | 24 / 28 / 600 |
+| Subheader | `subheader` | 20 / 24 / 600 |
+| Title | `title` | 17 / 24 / 600 |
+| Body, Body Strong | `body`, `body-strong` | 16 / 20 / 400, 500 |
+| Detail, Detail Strong | `detail`, `detail-strong` | 15 / 20 / 400, 500 |
+| Description, Description Strong | `description`, `description-strong` | 13 / 16 / 400, 500 |
+| Label, Label Strong | `label`, `label-strong` | 12 / 16 / 400, 500 |
+| Tag, Tag Strong | `tag`, `tag-strong` | 11 / 16 / 400, 500 |
+| Note, Note Strong | `note`, `note-strong` | 10 / 12 / 400, 500 |
+| Action / Large, Medium, Small, XSmall | `action-large`, `action-medium`, `action-small`, `action-xsmall` | 17 / 20, 16 / 20, 14 / 20, 13 / 16 — все 500 |
+
+`color`: `inherit` (по умолчанию), `primary`, `secondary`, `tertiary`.
+
+Компоненты `Typography.Display`, `Headline`, `Title`, `Body`, `Label`, `Action` работают как прежде и сохраняют свои размеры. Часть их стилей относится к прежней шкале, и **точных аналогов в новой шкале у них нет** — если в макете встретились эти стили, уточните у дизайнера, какой стиль новой шкалы имеется в виду:
+
+| Стиль прежней шкалы | Значения | Ближайший стиль новой шкалы |
+| --- | --- | --- |
+| Title / Small (`Typography.Title variant="small"`) | 14 / 18 / 400 | Description 13 / 16 или Detail 15 / 20 |
+| Label / Medium (`Typography.Label variant="medium"`) | 11 / 14 / 400 | Tag 11 / 16 |
+| Headline / Medium (`Typography.Headline variant="medium"`, `medium-strong`) | 20 / 24 / 400, 500 | Subheader 20 / 24 — только 600 |
+| Headline / Small (`Typography.Headline variant="small"`) | 17 / 22 / 400 | Title 17 / 24 / 600 |
+| Action / Large (`Typography.Action variant="large"`) | 17 / 22 / 600 | Action / Large 17 / 20 / 500 |
+| Action / Small (`Typography.Action variant="small"`) | 14 / 18 / 500 | Action / Small 14 / 20 |
+
+Полная витрина — в Storybook: **Common / Typography / Typography.Text → Стили Figma**.
+
+---
+
 ## Поддержка React
 
 | Версия React | Поддержка |

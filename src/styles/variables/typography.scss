@@ -1,3 +1,61 @@
+// Шкала типографики дизайн-системы MAX (имена стилей как в Figma: Hero, Header, …, Note).
+// Значения сверены с Figma. Добавлена рядом с прежней шкалой и её не меняет.
+@mixin textScaleTypography {
+  --font-size-hero: 1.75rem;
+  --line-height-hero: 2rem;
+  --font-weight-hero: 600;
+  --font-size-header: 1.5rem;
+  --line-height-header: 1.75rem;
+  --font-weight-header: 600;
+  --font-size-subheader: 1.25rem;
+  --line-height-subheader: 1.5rem;
+  --font-weight-subheader: 600;
+  --font-size-title: 1.0625rem;
+  --line-height-title: 1.5rem;
+  --font-weight-title: 600;
+  --font-size-body: 1rem;
+  --line-height-body: 1.25rem;
+  --font-weight-body: 400;
+  --font-weight-body-strong: 500;
+  --font-size-detail: 0.9375rem;
+  --line-height-detail: 1.25rem;
+  --font-weight-detail: 400;
+  --font-weight-detail-strong: 500;
+  --font-size-description: 0.8125rem;
+  --line-height-description: 1rem;
+  --font-weight-description: 400;
+  --font-weight-description-strong: 500;
+  --font-size-label: 0.75rem;
+  --line-height-label: 1rem;
+  --font-weight-label: 400;
+  --font-weight-label-strong: 500;
+  --font-size-cell-label-strong-small-caps: 0.75rem;
+  --line-height-cell-label-strong-small-caps: 1rem;
+  --letter-spacing-cell-label-strong-small-caps: 0.03125rem;
+  --font-weight-cell-label-strong-small-caps: 500;
+  --font-size-tag: 0.6875rem;
+  --line-height-tag: 1rem;
+  --font-weight-tag: 400;
+  --font-weight-tag-strong: 500;
+  --font-size-note: 0.625rem;
+  --line-height-note: 0.75rem;
+  --font-weight-note: 400;
+  --font-weight-note-strong: 500;
+  --font-size-action-large: 1.0625rem;
+  --line-height-action-large: 1.25rem;
+  --font-weight-action-large: 500;
+  --font-size-action-medium: 1rem;
+  --line-height-action-medium: 1.25rem;
+  --font-weight-action-medium: 500;
+  --font-size-action-small: 0.875rem;
+  --line-height-action-small: 1.25rem;
+  --font-weight-action-small: 500;
+  --font-size-action-xsmall: 0.8125rem;
+  --line-height-action-xsmall: 1rem;
+  --font-weight-action-xsmall: 500;
+  --family-headers: var(--family-accent);
+}
+
 @mixin iosTypography {
   --height-label-small: 0.75rem;
   --height-label-large: 0.875rem;
@@ -65,6 +123,20 @@
   /* string */
   --family-accent: -apple-system,system-ui,"Helvetica Neue",Roboto,sans-serif;
   --family-base: -apple-system,system-ui,"Helvetica Neue",Roboto,sans-serif;
+
+  // Шкала дизайн-системы MAX
+  @include textScaleTypography;
+  --letter-spacing-hero: 0.02375rem;
+  --letter-spacing-header: 0.004375rem;
+  --letter-spacing-subheader: -0.028125rem;
+  --letter-spacing-title: -0.026875rem;
+  --letter-spacing-body: -0.019375rem;
+  --letter-spacing-detail: -0.014375rem;
+  --letter-spacing-description: -0.005rem;
+  --letter-spacing-label: 0rem;
+  --letter-spacing-tag: 0.00375rem;
+  --letter-spacing-note: 0.0075rem;
+  --letter-spacing-action-xsmall: -0.009375rem;
 }
 
 @mixin androidTypography {
@@ -134,4 +206,18 @@
   /* string */
   --family-accent: -apple-system,system-ui,"Helvetica Neue",Roboto,sans-serif; // todo вынести общие переменные
   --family-base: -apple-system,system-ui,"Helvetica Neue",Roboto,sans-serif;
+
+  // Шкала дизайн-системы MAX
+  @include textScaleTypography;
+  --letter-spacing-hero: 0rem;
+  --letter-spacing-header: 0rem;
+  --letter-spacing-subheader: 0rem;
+  --letter-spacing-title: 0rem;
+  --letter-spacing-body: 0.009375rem;
+  --letter-spacing-detail: 0.009375rem;
+  --letter-spacing-description: 0.0125rem;
+  --letter-spacing-label: 0.01875rem;
+  --letter-spacing-tag: 0.01875rem;
+  --letter-spacing-note: 0.01875rem;
+  --letter-spacing-action-xsmall: 0.009375rem;
 }
