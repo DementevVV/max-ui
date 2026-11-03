@@ -1,5 +1,39 @@
 # Changelog
 
+## [0.3.0](https://github.com/DementevVV/max-ui/compare/v0.2.0...v0.3.0) (2026-11-03)
+
+### ✨ Новые возможности
+
+* **BottomSheet:** add bottom sheet with modal accessibility ([089f169](https://github.com/DementevVV/max-ui/commit/089f169b575708b0ac57072facd64361745d623e))
+* **ContextMenu:** add context menu ([e97ccd5](https://github.com/DementevVV/max-ui/commit/e97ccd51f9aff4fad4294c7ddbcfacecc5335c7a))
+* **Typography:** add design-system type scale and Typography.Text ([ac11038](https://github.com/DementevVV/max-ui/commit/ac1103802bdab6ca04d7e05ae14bb95c3cc72df7))
+* **icons:** add Icon16Info and Icon16Check ([8182b96](https://github.com/DementevVV/max-ui/commit/8182b9689ed353b548021253c9e247ddd8713d84))
+* **Dialog:** add modal dialog ([17cab61](https://github.com/DementevVV/max-ui/commit/17cab6118e7a1aaf3477fb3cc9e7a5236b36fd4b))
+* **Select:** add Select, deprecate Dropdown ([5192ef8](https://github.com/DementevVV/max-ui/commit/5192ef80019c7ba19a4caff54c0b8ea4cdaeb8ef))
+* add Steps, StatusBadge and Tooltip ([3be1323](https://github.com/DementevVV/max-ui/commit/3be1323dee323f86a49b9b38752f74e8a610ca95))
+* **styles:** adopt design-system color palette with legacy aliases ([5e4f7cd](https://github.com/DementevVV/max-ui/commit/5e4f7cd10f03a41ae07b7797d4bbd8c3a63d2e40))
+
+### 🐛 Исправления
+
+* **Tappable, CellSimple:** disabled elements must not trigger onClick ([5a90843](https://github.com/DementevVV/max-ui/commit/5a908432c27fd1edcff75cf16d95893669ac67e5))
+* **Tabs:** render TabsContent panels outside the tablist ([3a73175](https://github.com/DementevVV/max-ui/commit/3a731754c917e9d82ea87b0034759357db39fe8d))
+* **InlineAlert, Toast:** use existing spacing token for content gap ([66e21a2](https://github.com/DementevVV/max-ui/commit/66e21a24ee51187d5efcbb9eae8dd0f5d45ca150))
+
+### 📚 Документация
+
+* **changelog:** expand 0.2.0 release notes ([71e13db](https://github.com/DementevVV/max-ui/commit/71e13db96d04623da26dc3ae190275e2dee48511))
+* tidy code comments and 0.2.0 changelog wording ([a9cccb8](https://github.com/DementevVV/max-ui/commit/a9cccb826de35c014d32521a901f76424a248c20))
+
+### 🛠 Прочее
+
+* **deps:** patch transitive dev dependencies ([59198e9](https://github.com/DementevVV/max-ui/commit/59198e9a7ea34a84889140fe36840535f7c5346d))
+
+### 📦 Сборка
+
+* **release:** apply numeric-only issue refs to commit subjects too ([78ab12e](https://github.com/DementevVV/max-ui/commit/78ab12ee3554593f58ea2c23de4e4a5ed4ec8992))
+* keep runtime dependencies external in the bundle ([53b3507](https://github.com/DementevVV/max-ui/commit/53b3507742fc5f4bb0f821132116186ecdadd0c3))
+* **release:** only numeric #refs count as issue references ([a740b62](https://github.com/DementevVV/max-ui/commit/a740b6250be57dff79fe6e1d1cc32d30054138e0))
+
 ## [0.2.0](https://github.com/DementevVV/max-ui/compare/v0.1.20...v0.2.0) (2026-08-21)
 
 ### ✨ Новые возможности
