@@ -17,7 +17,7 @@
 }
 
 // [Variant API] Размеры нового API дизайн-системы (variant у Button/IconButton).
-// Значения из upstream/Figma; legacy-миксины выше не трогаем — старые кнопки не должны менять габариты.
+// Значения из дизайн-системы MAX; legacy-миксины выше не трогаем — старые кнопки не должны менять габариты.
 @mixin buttonVariantXSmallSize {
   height: 32px;
   min-width: 40px;

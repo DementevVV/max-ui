@@ -63,7 +63,7 @@ export const getButtonCounterAppearance = (buttonAppearance: ButtonAppearance, b
   return { mode: buttonMode === 'primary' ? 'inverse' : 'filled', appearance: 'themed' };
 };
 
-// Соответствие upstream-таблицы (Counter variant) нашему Counter API (appearance × mode)
+// Цвета Counter внутри кнопки для каждого variant (appearance × mode)
 export const getButtonVariantCounterAppearance = (buttonVariant: ButtonVariant): Pick<CounterProps, 'appearance' | 'mode'> => {
   switch (buttonVariant) {
     case 'primary':

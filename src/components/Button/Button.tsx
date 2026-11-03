@@ -25,8 +25,7 @@ export interface ButtonProps extends ComponentProps<'button'>, AsChildProp {
   mode?: ButtonMode
   appearance?: ButtonAppearance
   /**
-   * Новый канонический API дизайн-системы MAX (семейство `Button/*` из Figma,
-   * значения и размеры соответствуют upstream `@maxhub/max-ui` 0.2.x).
+   * Новый канонический API дизайн-системы MAX (семейство `Button/*` из Figma).
    * Если задан — `mode`/`appearance` игнорируются, размеры берутся из новой шкалы
    * (xsmall 32 / small 40 / medium 52 / large 60).
    */
