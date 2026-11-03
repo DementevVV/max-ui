@@ -5,6 +5,7 @@
       "infile": "CHANGELOG.md",
       "preset": {
         "name": "conventionalcommits",
+        "issuePrefixes": ["#(?=\\d+\\b)"],
         "types": [
           { "type": "feat", "section": "✨ Новые возможности" },
           { "type": "feature", "section": "✨ Новые возможности" },
