@@ -20,6 +20,9 @@
         ]
       },
       "header": "# Changelog",
+      "parserOpts": {
+        "issuePrefixes": ["#(?=\\d+\\b)"]
+      },
       "writerOpts": {
         "commitsSort": ["subject", "scope"]
       }
